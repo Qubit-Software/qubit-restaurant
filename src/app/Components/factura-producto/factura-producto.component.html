@@ -1,0 +1,95 @@
+<div class="card">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Productos</h4>
+        <table>
+          <tr>
+            <th>Código</th>
+            <th>Referencia</th>
+            <th>Marca</th>
+            <th>Talla</th>
+            <th>Cant</th>
+            <th>Precio</th>
+            <th>Precio Base</th>
+            <th>IVA</th>
+            <th>Subtotal</th>
+          </tr>
+          <tr *ngFor="let i of dataArray;let p=index">
+            <td>B4569600</td>
+            <td>Saco de Lana</td>
+            <td>Alison</td>
+            <td>M</td>
+            <td>2</td>
+            <td>$36.900</td>
+            <td>$29.889</td>
+            <td>$7.011</td>
+            <td>$36.900</td>
+            <td *ngIf="p!=0" class="deleteRow" (click)="deleteProduct(p)" style="cursor: pointer;">
+              <img src="../../../assets/iconos/delete.svg" height="15px" alt="">
+            </td>
+          </tr>
+        </table>
+        <div class="row d-flex justify-content-end" style="margin-right: 0vh;">
+          <button (click)="addForm()" type="button" class="btn rounded-circle" id="plusElement"
+            [attr.disabled]="active === 1 ? 'disabled' : null" style="padding-bottom: 0px;padding-top: 1px;">
+            <fa-icon [icon]="faPlus"></fa-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-12">
+            <h4>Observaciones</h4>
+            <input type="text" class="form__field" value="Garantia de 6 meses" name="user" disabled />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <h4>Forma de pago</h4>
+            <input type="text" class="form__field" value="Efectivo" name="user" disabled />
+          </div>
+          <div class="col-md-4">
+            <h4>Entidad</h4>
+            <input type="text" class="form__field" value="" name="user" disabled />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <input type="text" class="form__field" value="Garantia de 6 meses" name="user" disabled />
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form__field" value="Garantia de 6 meses" name="user" disabled />
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form__field" value="Garantia de 6 meses" name="user" disabled />
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <table class="tableBottom">
+          <tbody class="tableBottom">
+            <tr class="tableBottom">
+              <td>Total Venta:</td>
+              <td>$91.820</td>
+            </tr>
+            <tr>
+              <td>Descuento:</td>
+              <td>$10.000</td>
+            </tr>
+            <tr>
+              <td>Base liquidación:</td>
+              <td>$81.820</td>
+            </tr>
+            <tr>
+              <td>IVA:</td>
+              <td>$10.820</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>

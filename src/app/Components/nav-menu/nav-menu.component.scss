@@ -1,0 +1,76 @@
+// @import "bourbon";
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600);
+
+a{
+  text-decoration: none;
+}
+
+.app{
+  height: 100vh;
+}
+/* -------------
+Sidebar
+----------------*/
+.sidebar {
+  position: absolute;
+  //width: 33.3333%;
+  width: 15em;
+  height: 100%;
+  top: 0;
+  overflow:hidden;
+  -webkit-transform: translateZ(0);
+  visibility: visible;
+  -webkit-backface-visibility: hidden;
+
+  header{
+    background-color:white;
+    width: 100%;
+    display:block;
+    padding: 0.75em	1em;
+  }
+}
+
+/* -------------
+Sidebar Nav
+----------------*/
+.sidebar-nav {
+  position: fixed;
+  //width: 13em;
+  background-color:white;
+  height: 100%;
+  font-weight: 400;
+  font-size: 1.2em;
+  overflow: auto;
+  padding-bottom: 6em;
+  z-index: 9;
+  overflow: hidden;
+
+  ul{
+    list-style:none;
+    display: block;
+    padding: 0;
+    margin: 0;
+
+    li{
+      margin-left: 0;
+      padding-left: 0;
+      display:inline-block;
+      width: 100%;
+
+      a{
+        font-family: 'Poppins';
+        color:#343E7D;
+        font-size: 0.8em;
+        padding: 0.5em 1em;
+        position: relative;
+        display:block;
+      }
+      &:hover{
+        background-color:#4D5DB7;
+      }
+      a:hover{
+        color:white;
+      }
+    }
+  }
+}

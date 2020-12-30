@@ -1,0 +1,23 @@
+.container{
+  margin: 0rem 5rem;
+  padding: 1rem;
+  background-color: #E9ECF6;
+  height: 100%;
+}
+body{
+  background-color: #E9ECF6;
+}
+.bodyLogin{
+  background-color: #E9ECF6;
+}
+.menuContainer{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.row{
+  margin-bottom: 20px;
+  padding-left: 0px;
+  padding-right: 35px;
+}
+
