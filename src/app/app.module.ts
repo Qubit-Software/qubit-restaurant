@@ -10,6 +10,8 @@ import { FacturacionComponent } from './Pages/facturacion/facturacion.component'
 import { ClientesComponent } from './Components/clientes/clientes.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FacturaProductoComponent } from './Components/factura-producto/factura-producto.component';
+import { ClientsComponent } from './Pages/clients/clients.component';
+import { ClientTableComponent } from './Components/clientes/client-table/client-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +20,9 @@ import { FacturaProductoComponent } from './Components/factura-producto/factura-
     HomeComponent,
     FacturacionComponent,
     ClientesComponent,
-    FacturaProductoComponent
+    FacturaProductoComponent,
+    ClientsComponent,
+    ClientTableComponent
   ],
   imports: [
     BrowserModule,
