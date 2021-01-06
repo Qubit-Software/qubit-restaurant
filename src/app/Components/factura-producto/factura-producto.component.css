@@ -1,26 +1,11 @@
-.card {
-  margin: 2rem;
-  padding: 2rem 4rem 2rem 4rem;
-  border: 1px solid #ffffff;
-  border-radius: 20px;
-}
-
 h4 {
   font-size: 13px;
   font-weight: 900;
   color: #343E7D;
 }
 
-table, td, th {
-  color: #4D5DB7;
-  background-color: #E9ECF6;
-  border: 1px solid #ADB7F0;
-  text-align: left;
-  font-size: 12px;
-}
 
 table {
-  border-collapse: collapse;
   width: 100%;
 }
 
@@ -28,11 +13,6 @@ th, td {
   padding: 5px;
 }
 
-.deleteRow {
-  background-color: white;
-  border: 0px solid white;
-  border-bottom: 0px solid white;
-}
 
 .form__field {
   font-family: inherit;

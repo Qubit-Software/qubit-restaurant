@@ -21,7 +21,6 @@
 /*-----------------Model Style------------------*/
 
 #content {
- 
   flex: 0 0 87.333333%;
   max-width: 87.333333%;
   position: relative;
@@ -32,7 +31,32 @@
   max-width: 12.666667%;
   position: relative;
 }
-body{
+
+body {
   background-color: #E9ECF6;
 }
+
 /*-----------------Model Style Ends------------------*/
+
+/*-----------------Car Styles----------------------*/
+
+.card {
+  margin: 2rem;
+  padding: 2rem 4rem 2rem 4rem;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+}
+
+/*-----------------Car Styles Ends----------------------*/
+
+/*-----------------Table Styles Ends----------------------*/
+
+table, td, th {
+  color: #4D5DB7;
+  background-color: #E9ECF6;
+  border: 1px solid #ADB7F0;
+  text-align: left;
+  font-size: 12px;
+}
+
+/*-----------------Table Styles Ends----------------------*/

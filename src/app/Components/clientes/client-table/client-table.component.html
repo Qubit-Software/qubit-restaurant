@@ -1,17 +1,51 @@
 <div class="container-fluid">
     <div class="row mt-3">
         <div class="col">
-            <h1 class="poppinsMedium ml-4" >Clientes</h1>
+            <h1 class="poppinsMedium ml-4">Clientes</h1>
         </div>
         <div id="userDiv">
             <p class="d-inline poppinsMedium mr-3">Aquamonte S.A.S</p>
-            <img id="profilePic" class=" d-inline ml-2" src="../../../../assets/images/userIcons/Screenshot_1.png" height="70" width="70">
+            <img id="profilePic" class=" d-inline ml-2" src="../../../../assets/images/userIcons/Screenshot_1.png"
+                height="70" width="70">
         </div>
     </div>
     <div class="row">
         <div class="col">
             <input id="search" type="text" class="form-control ">
-            <app-factura-producto></app-factura-producto>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <table>
+                    <tr class="poppinsMedium">
+                        <th>Código</th>
+                        <th>Referencia</th>
+                        <th>Marca</th>
+                        <th>Talla</th>
+                        <th>Cant</th>
+                        <th>Precio</th>
+                        <th>Precio Base</th>
+                        <th>IVA</th>
+                        <th>Subtotal</th>
+                    </tr>
+                    <tr class="poppinsLight">
+                        <td>B4569600</td>
+                        <td>Saco de Lana</td>
+                        <td>Alison</td>
+                        <td>M</td>
+                        <td>2</td>
+                        <td>$36.900</td>
+                        <td>$29.889</td>
+                        <td>$7.011</td>
+                        <td>$36.900</td>
+                        <td style="cursor: pointer;">
+                            <img src="../../../assets/images/iconos/delete.svg" height="15px" alt="">
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

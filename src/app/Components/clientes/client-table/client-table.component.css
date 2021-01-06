@@ -14,4 +14,9 @@
     margin-right: auto;
     background-color: #4D5DB7;
     color: white;
+    background-image: url(../../../../assets/images/iconos/search.png);
+    background-size: 2rem;
+    background-repeat: no-repeat;
+    text-indent: 6%;
+    background-position:8px 3px;
 }
