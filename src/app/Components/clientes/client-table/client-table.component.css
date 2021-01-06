@@ -2,6 +2,16 @@
     clip-path: circle(50% at 50% 50%);
     background-color: #6f6e6e26;
 }
-#userDiv{
+
+#userDiv {
     margin-right: 3rem;
+}
+
+#search {
+    border-radius: 1.25rem!important;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #4D5DB7;
+    color: white;
 }
