@@ -1,5 +1,7 @@
 #profilePic {
     clip-path: circle(50% at 50% 50%);
-    background-color: black;
-    padding: 3%;
+    background-color: #6f6e6e26;
+}
+#userDiv{
+    margin-right: 3rem;
 }

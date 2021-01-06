@@ -1,52 +1,58 @@
-.container{
+.container {
   width: 100%;
   height: 100%;
   margin: 0px;
   max-width: 100%;
 }
-.containerImage{
+
+.containerImage {
   width: 100%;
 }
-.containerImage img{
+
+.containerImage img {
   width: 100%;
   height: 100vh;
 }
-h3{
+
+h3 {
   color: #343E7D;
   margin-bottom: 3%;
   font-weight: 600;
-  font-family: 'Poppins';
   font-size: 24px;
 }
-p{
+
+p {
   font-size: 11px;
   color: #4D5DB7;
 }
-@media (min-width: 768px){
- .col-md-9 {
+
+@media (min-width: 768px) {
+  .col-md-9 {
     flex: 0 0 75%;
     max-width: 72%;
- }
- .col-md-3 {
-  flex: 0 0 28%;
-  max-width: 28%;
+  }
+  .col-md-3 {
+    flex: 0 0 28%;
+    max-width: 28%;
+  }
 }
-}
-.imageHeader{
+
+.imageHeader {
   text-align: center;
   margin-top: 6vh;
 }
-.imageHeader img{
+
+.imageHeader img {
   width: 180px;
   margin: auto;
 }
-.formLogin{
+
+.formLogin {
   margin: 12vh 2vh 0px;
   padding: 0vh 2vh;
 }
 
 .form__field {
-  font-family: 'Poppins';
   font-family: inherit;
   margin-bottom: 8%;
   width: 100%;
@@ -54,34 +60,35 @@ p{
   border-bottom: 3px solid#DAE0F6;
   outline: 0;
   font-size: 0.8rem;
-  color:#9299B9;
+  color: #9299B9;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
 }
+
 .form__field:focus {
-  font-family: 'Poppins';
   display: block;
   transition: 0.2s;
-  font-weight:700;
+  font-weight: 800;
   padding-bottom: 6px;
   border-bottom: 3px solid#343E7D;
   font-weight: 700;
   border-width: 3px;
   border-image-slice: 1;
 }
+
 ::placeholder {
-  color:#9299B9;
+  color: #9299B9;
 }
 
-.formLogin a{
+.formLogin a {
   float: right;
   color: #343E7D;
   font-size: 11px;
 }
-.btn{
+
+.btn {
   margin-top: 8vh;
-  font-family: 'Poppins';
   margin: auto;
   width: 70%;
   font-size: 15px;
@@ -89,16 +96,21 @@ p{
   border-radius: 8px;
   color: white;
 }
-.btn:hover{
-  background-color: #282f5a;
+
+.btn:hover {
+  background-color: white;
+  color: #282f5a;
+  border: 1px solid #282f5a;
 }
 
-.footer{
+.footer {
   position: absolute;
   bottom: 2vh;
-  margin-left: auto;
-  margin-right: auto;
   left: 0;
   right: 0;
   text-align: center;
+}
+
+form p {
+  margin-bottom: 10vh;
 }

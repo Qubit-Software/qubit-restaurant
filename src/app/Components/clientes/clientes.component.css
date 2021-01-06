@@ -1,37 +1,34 @@
 .card {
-  transition: 0.3s;
-  width: 100%;
-  height: auto;
+  margin: 2rem;
+  padding: 2rem 4rem 2rem 4rem;
   border: 1px solid #ffffff;
-  margin-left: 10%;
   border-radius: 20px;
-  margin-bottom: 4vh;
 }
-.container{
+
+.container {
   padding: 3vh 2vh 2vh 9vh;
 }
-h4{
+
+h4 {
   color: #343E7D;
   margin-bottom: 1%;
   font-weight: 600;
-  font-family: 'Poppins';
   font-size: 14px;
 }
+
 .form__field {
-  font-family: 'Poppins';
-  font-family: inherit;
-  width: 70%;
   border: 0;
   border-bottom: 1px solid#DAE0F6;
   outline: 0;
   font-size: 0.8rem;
-  color:#4D5DB7;
+  color: #4D5DB7;
   padding: 0px 10px 0px;
   background: transparent;
   transition: border-color 0.2s;
   margin-bottom: 6%;
 }
-.btn-floating{
+
+.btn-floating {
   position: absolute;
   top: 2vh;
   right: 4vh;
@@ -42,8 +39,8 @@ h4{
   color: white;
   border: #343E7D;
 }
-.btn-floating:hover{
+
+.btn-floating:hover {
   background-color: #21274d;
   border: #21274d;
-
 }

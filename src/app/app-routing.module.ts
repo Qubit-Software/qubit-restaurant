@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LogginComponent } from './Pages/loggin/loggin.component';
+import { LogginComponent } from './Pages/login/login.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { FacturacionComponent } from './Pages/facturacion/facturacion.component';
 import { ClientesComponent } from './Components/clientes/clientes.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'clients', component: ClientsComponent, children: [
+    path: 'clients', component: HomeComponent, children: [
       { path: 'clientTable', component: ClientTableComponent },
 
     ]
