@@ -7,7 +7,7 @@ import { NavMenuComponent } from './Components/nav-menu/nav-menu.component';
 import { LogginComponent } from './Pages/login/login.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { FacturacionComponent } from './Pages/facturacion/facturacion.component';
-import { ClientesComponent } from './Components/clientes/clientes.component';
+import { ClientesComponent } from './Components/clientes/clientes/clientes.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FacturaProductoComponent } from './Components/factura-producto/factura-producto.component';
 import { ClientsComponent } from './Pages/clients/clients.component';
