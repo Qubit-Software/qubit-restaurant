@@ -59,4 +59,12 @@ table, td, th {
   font-size: 12px;
 }
 
+th, td {
+  padding: 5px;
+}
+
+table {
+  width: 100%;
+}
+
 /*-----------------Table Styles Ends----------------------*/

@@ -12,6 +12,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FacturaProductoComponent } from './Components/factura-producto/factura-producto.component';
 import { ClientsComponent } from './Pages/clients/clients.component';
 import { ClientTableComponent } from './Components/clientes/client-table/client-table.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +29,8 @@ import { ClientTableComponent } from './Components/clientes/client-table/client-
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

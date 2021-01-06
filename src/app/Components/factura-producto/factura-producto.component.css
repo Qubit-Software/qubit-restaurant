@@ -5,13 +5,7 @@ h4 {
 }
 
 
-table {
-  width: 100%;
-}
 
-th, td {
-  padding: 5px;
-}
 
 
 .form__field {
@@ -29,11 +23,6 @@ th, td {
 }
 
 .tableBottom {
-  border: hidden;
-  background-color: white;
-}
-
-.tableBottom tr td {
   border: hidden;
   background-color: white;
 }

@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col">
+        <div id="searchDiv" class="col">
             <input id="search" type="text" class="form-control ">
 
         </div>
@@ -30,21 +30,24 @@
                         <th>IVA</th>
                         <th>Subtotal</th>
                     </tr>
-                    <tr class="poppinsLight">
-                        <td>B4569600</td>
-                        <td>Saco de Lana</td>
-                        <td>Alison</td>
-                        <td>M</td>
-                        <td>2</td>
-                        <td>$36.900</td>
-                        <td>$29.889</td>
-                        <td>$7.011</td>
-                        <td>$36.900</td>
+                    <tr class="poppinsLight" *ngFor="let i of template | paginate: {itemsPerPage: 13, currentPage:page}">
+                        <td>{{i.codigo}}</td>
+                        <td>{{i.referencia}}</td>
+                        <td>{{i.Marca}}</td>
+                        <td>{{i.Talla}}</td>
+                        <td>{{i.Cantidad}}</td>
+                        <td>{{i.Precio}}</td>
+                        <td>{{i.precioBase}}</td>
+                        <td>{{i.Iva}}</td>
+                        <td>{{i.subtotal}}</td>
                         <td style="cursor: pointer;">
                             <img src="../../../assets/images/iconos/delete.svg" height="15px" alt="">
                         </td>
                     </tr>
                 </table>
+                <pagination-controls (pageChange)="page = $event" responsive="true" previousLabel=""
+                nextLabel=""  class="pagination mx-auto mt-4 poppinsLight" ></pagination-controls>
+
             </div>
         </div>
     </div>
