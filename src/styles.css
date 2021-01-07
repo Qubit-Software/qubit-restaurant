@@ -21,14 +21,14 @@
 /*-----------------Model Style------------------*/
 
 #content {
-  flex: 0 0 87.333333%;
-  max-width: 87.333333%;
+  flex: 0 0 84.333333%;
+  max-width: 84.333333%;
   position: relative;
 }
 
 #sideMenu {
-  flex: 0 0 12.666667%;
-  max-width: 12.666667%;
+  flex: 0 0 15.666667%;
+  max-width: 15.666667%;
   position: relative;
 }
 
