@@ -29,8 +29,14 @@
                     </div>
                 </div>
             </div>
-            <div class="card flex-grow-1 text-center">
+            <div class="card flex-grow-1 ">
                 <p class="poppinsMedium">% Metodos de pago</p>
+                <div class="chart-wrapper mx-auto" >
+                    <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
+                        [options]="pieChartOptions"  [colors]="pieChartColors" [plugins]="pieChartPlugins"
+                        [legend]="pieChartLegend"  height="40vh" width="80vw">
+                    </canvas>
+                </div>
             </div>
         </div>
     </section>

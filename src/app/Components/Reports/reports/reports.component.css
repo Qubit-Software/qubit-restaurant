@@ -1,7 +1,12 @@
-.card{
+.card {
     white-space: nowrap;
     padding: 2rem;
 }
-#ingresosBox{
-    width: 25vw;
+
+#ingresosBox {
+    width: 20vw;
+}
+
+.chart-wrapper {
+    width: 50%;
 }

@@ -14,6 +14,8 @@ import { ClientsComponent } from './Pages/clients/clients.component';
 import { ClientTableComponent } from './Components/clientes/client-table/client-table.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReportsComponent } from './Components/Reports/reports/reports.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { ReportsComponent } from './Components/Reports/reports/reports.component
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
