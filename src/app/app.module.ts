@@ -13,6 +13,7 @@ import { FacturaProductoComponent } from './Components/factura-producto/factura-
 import { ClientsComponent } from './Pages/clients/clients.component';
 import { ClientTableComponent } from './Components/clientes/client-table/client-table.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ReportsComponent } from './Components/Reports/reports/reports.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ClientesComponent,
     FacturaProductoComponent,
     ClientsComponent,
-    ClientTableComponent
+    ClientTableComponent,
+    ReportsComponent
   ],
   imports: [
     BrowserModule,
