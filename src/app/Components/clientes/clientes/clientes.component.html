@@ -1,23 +1,82 @@
 <div class="card">
-    <div class="row">
-      <div class="col-md-3 ml-4 ">
-        <h4 class="poppinsMedium">Cliente</h4>
-        <input type="text" class="poppinsLight form__field form-control text-center" value="Andres Orjuez" name="user" disabled />
-        <h4 class="poppinsMedium">Correo Electronico</h4>
-        <input type="text" class="poppinsLight form__field form-control text-center" value="andresorjuez15@gmail.com" name="user" disabled />
+  <div class="row">
+    <div class="col-md-3 ml-4 ">
+      <h4 class="poppinsMedium">Cliente</h4>
+      <input type="text" class="poppinsLight form__field form-control text-center" value="Andres Orjuez" name="user"
+        disabled />
+      <h4 class="poppinsMedium">Correo Electronico</h4>
+      <input type="text" class="poppinsLight form__field form-control text-center" value="andresorjuez15@gmail.com"
+        name="user" disabled />
+    </div>
+    <div class="col-md-3 offset-1">
+      <h4 class="poppinsMedium">C.C.</h4>
+      <input type="text" class="poppinsLight form__field form-control text-center" value="1025489745" name="user"
+        disabled />
+      <h4 class="poppinsMedium">Dirección </h4>
+      <input type="text" class="poppinsLight form__field form-control text-center" value="calle 13 # 17-29" name="user"
+        disabled />
+    </div>
+    <div class="col-md-3 offset-1">
+      <h4 class="poppinsMedium">Celular:</h4>
+      <input type="text" class="poppinsLight form__field form-control text-center" value="3168250749" name="user"
+        disabled />
+      <h4 class="poppinsMedium">Ciudad</h4>
+      <input type="text" class="poppinsLight form__field form-control text-center" value="Zipaquirá" name="user"
+        disabled />
+    </div>
+  </div>
+  <button (click)='openModal()' class="btn-floating">
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </button>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true"
+  role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title ml-3" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close mr-2" aria-label="Close" (click)='closeModal()'>
+          <span aria-hidden="true">×</span>
+        </button>
       </div>
-      <div class="col-md-3 offset-1">
-        <h4 class="poppinsMedium">C.C.</h4>
-        <input type="text" class="poppinsLight form__field form-control text-center" value="1025489745" name="user" disabled />
-        <h4 class="poppinsMedium">Dirección </h4>
-        <input type="text" class="poppinsLight form__field form-control text-center" value="calle 13 # 17-29" name="user" disabled />
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row mb-3">
+            <div class="col-4">
+              <h6 class="poppinsMedium">Nombre</h6>
+              <span class="poppinsLight">Andrés Orjuez</span>
+            </div>
+            <div class="col-4">
+              <h6 class="poppinsMedium">C.C</h6>
+              <span class="poppinsLight">1025489745</span>
+            </div>
+            <div class="col-4">
+              <h6 class="poppinsMedium">Celular</h6>
+              <span class="poppinsLight">3168250749</span>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-4">
+              <h6 class="poppinsMedium">Correo Electronico</h6>
+              <span class="poppinsLight">andresorjuez15@gmail.com</span>
+            </div>
+            <div class="col-4">
+              <h6 class="poppinsMedium">Dirección</h6>
+              <span class="poppinsLight">calle 13 # 17-29</span>
+            </div>
+            <div class="col-4">
+              <h6 class="poppinsMedium">Ciudad</h6>
+              <span class="poppinsLight">Zipaquirá</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-3 offset-1">
-        <h4 class="poppinsMedium">Celular:</h4>
-        <input type="text" class="poppinsLight form__field form-control text-center" value="3168250749" name="user" disabled />
-        <h4 class="poppinsMedium">Ciudad</h4>
-        <input type="text" class="poppinsLight form__field form-control text-center" value="Zipaquirá" name="user" disabled />
+      <div class="modal-footer mb-2">
+        <button type="button" class="btn btn-secondary mr-4">Crear cliente</button>
+        <button type="button" class="btn btn-primary ml-2" (click)='closeModal()'>Cancelar</button>
       </div>
     </div>
-  <button class="btn-floating"><fa-icon [icon]="faPlus"></fa-icon></button>
+  </div>
 </div>
+<div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>
