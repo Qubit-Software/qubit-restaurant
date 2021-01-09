@@ -1,6 +1,6 @@
 .card {
-    white-space: nowrap;
-    padding: 2rem;
+    padding: 1.6rem 2rem;
+    margin: 0.5rem 1rem;
 }
 
 #ingresosBox {
@@ -10,3 +10,8 @@
 .chart-wrapper {
     width: 50%;
 }
+
+.barChartWrapper {
+    width: 90%;
+}
+

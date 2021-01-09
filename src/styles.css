@@ -26,6 +26,11 @@
   position: relative;
 }
 
+.sidebar {
+  position: fixed;
+  max-width: 15.666667%;
+}
+
 #sideMenu {
   flex: 0 0 15.666667%;
   max-width: 15.666667%;
@@ -68,3 +73,12 @@ table {
 }
 
 /*-----------------Table Styles Ends----------------------*/
+
+/*-----------------Button styles----------------------*/
+
+.btn {
+  background-color: #343E7D;
+  color: white;
+}
+
+/*-----------------Button styless Ends----------------------*/
