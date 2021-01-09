@@ -4,14 +4,14 @@
 }
 
 #ingresosBox {
-    width: 20vw;
+    width: 24vw;
 }
-
 .chart-wrapper {
     width: 50%;
 }
-
+.firstCards{
+  padding: 1.6rem 1.5rem;
+}
 .barChartWrapper {
     width: 90%;
 }
-

@@ -21,19 +21,19 @@
 /*-----------------Model Style------------------*/
 
 #content {
-  flex: 0 0 84.333333%;
-  max-width: 84.333333%;
+  flex: 0 0 82.333333%;
+  max-width: 82.333333%;
   position: relative;
 }
 
 .sidebar {
   position: fixed;
-  max-width: 15.666667%;
+  max-width: 17.666667%;
 }
 
 #sideMenu {
-  flex: 0 0 15.666667%;
-  max-width: 15.666667%;
+  flex: 0 0 17.666667%;
+  max-width: 17.666667%;
   position: relative;
 }
 
@@ -78,6 +78,10 @@ table {
 
 .btn {
   background-color: #343E7D;
+  color: white;
+}
+.btn:hover{
+  background-color: #21274d;
   color: white;
 }
 
