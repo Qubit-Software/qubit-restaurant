@@ -2,14 +2,11 @@ h4 {
   font-size: 13px;
   font-weight: 900;
   color: #343E7D;
+  font-family: Poppins-Medium;
 }
 
-
-
-
-
 .form__field {
-  font-family: inherit;
+  font-family: Poppins-Light;
   width: 90%;
   border: 0;
   border-bottom: 1px solid#DAE0F6;
@@ -21,8 +18,55 @@ h4 {
   transition: border-color 0.2s;
   margin-bottom: 4vh;
 }
-
-.tableBottom {
+.tableBottom td {
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #343E7D;
   border: hidden;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: Poppins-Light;
   background-color: white;
+}
+.tableBottom:first-child td:last-child{text-align: right}
+.ContainerTableFactura td{
+  color: white;
+  font-family: Poppins-Light;
+  background-color: #343E7D;
+}
+
+.ContainerTableFactura:first-child td:first-child { border-top-left-radius: 8px; }
+.ContainerTableFactura:first-child td:last-child { border-top-right-radius: 8px; text-align: right;}
+.ContainerTableFactura:last-child td:first-child { border-bottom-left-radius: 8px; }
+.ContainerTableFactura:last-child td:last-child { border-bottom-right-radius: 8px; }
+
+.Pagar {
+  font-size: 13px;
+  padding: 2px 10px 5px;
+  width: 12vh;
+  background-color: #343E7D;
+  border-radius: 6px;
+  color: white;
+  float: right;
+}
+
+.Pagar:hover {
+  background-color: white;
+  color: #282f5a;
+  border: 1px solid #282f5a;
+}
+.Cancelar {
+  font-size: 13px;
+  padding: 2px 10px 5px;
+  width: 12vh;
+  background-color: #9299B9;
+  border-radius: 6px;
+  color: white;
+  float: left;
+}
+
+.Cancelar:hover {
+  background-color: white;
+  color: #282f5a;
+  border: 1px solid #282f5a;
 }
