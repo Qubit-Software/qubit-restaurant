@@ -95,6 +95,10 @@ table {
   background-color: #21274d;
   color: white;
 }
+button:focus{
+  border: none;
+  outline:none;
+}
 
 /*-----------------Button styless Ends----------------------*/
 

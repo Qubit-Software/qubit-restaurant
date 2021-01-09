@@ -40,6 +40,9 @@ h4 {
 
 /******************** Modal Styles ***************************/
 
+.btn-primary{
+  border-color: #21274d;
+}
 .modal-header {
   background: #4D5DB7;
   color: white;
