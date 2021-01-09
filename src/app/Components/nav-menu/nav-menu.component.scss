@@ -33,7 +33,7 @@ a{
       a{
         color:#343E7D;
         font-size: 0.8em;
-        padding: 0.5em 1em;
+        padding: 0.5em 20%;
         position: relative;
         display:block;
       }
@@ -49,10 +49,9 @@ a{
 
 /* ------------- Sidebar Nav Ends ----------------*/
 
-.navElement{
-  padding-left: 20%;
-}
+
 #logoQubitContable{
   height:auto;
   width: 100%;
 }
+

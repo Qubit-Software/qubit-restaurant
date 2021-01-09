@@ -1,28 +1,36 @@
 <aside class="sidebar">
+  <a [routerLink]="['facturacion']">
     <header>
       <img id="logoQubitContable" class="img-fluid" src="../../../assets/images/Logo/LogoContable.png"
         alt="Logo Qubit-Contable">
     </header>
-    <nav class="sidebar-nav">
-      <ul>
-        <li>
-          <a [routerLink]="['facturacion']" class="poppinsLight"><img src="" width="30" class="navElement" />Facturación</a>
-        </li>
-        <li>
-          <a [routerLink]="['clients']" class="poppinsLight"><img src="" width="30" class="navElement" />Clientes</a>
-        </li>
-        <li>
-          <a [routerLink]="['cupo']" class="poppinsLight"><img src="" width="30" class="navElement" />Facturas</a>
-        </li>
-        <li>
-          <a [routerLink]="['vehicle']" class="poppinsLight"><img src="" width="30" class="navElement" />Informes</a>
-        </li>
-        <li>
-          <a [routerLink]="['vehicle']" class="poppinsLight"><img src="" width="30" class="navElement" />Inventario</a>
-        </li>
-        <li>
-          <a [routerLink]="['vehicle']" class="poppinsLight"><img src="" width="30" class="navElement" />Saldos</a>
-        </li>
-      </ul>
-    </nav>
+  </a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li>
+        <a [routerLink]="['facturacion']" class="poppinsLight  text-justify"><img
+            src="../../../assets/images/iconos/document.png" width="30" class="mr-2" />Facturación</a>
+      </li>
+      <li>
+        <a [routerLink]="['clients']" class="poppinsLight text-justify"><img
+            src="../../../assets/images/iconos/clients.png" width="30" class="mr-2" />Clientes</a>
+      </li>
+      <li>
+        <a [routerLink]="['cupo']" class="poppinsLight text-justify"><img
+            src="../../../assets/images/iconos/shopingCart.png" class="mr-2" width="30" />Facturas</a>
+      </li>
+      <li>
+        <a [routerLink]="['reports']" class="poppinsLight text-justify"><img
+            src="../../../assets/images/iconos/moneySign.png" width="30" class="mr-2" />Informes</a>
+      </li>
+      <li>
+        <a [routerLink]="['vehicle']" class="poppinsLight text-justify"><img
+            src="../../../assets/images/iconos/check.png" width="30" class="mr-2" />Inventario</a>
+      </li>
+      <li>
+        <a [routerLink]="['vehicle']" class="poppinsLight text-justify"><img
+            src="../../../assets/images/iconos/buck.png" width="30" class="mr-2" />Saldos</a>
+      </li>
+    </ul>
+  </nav>
 </aside>

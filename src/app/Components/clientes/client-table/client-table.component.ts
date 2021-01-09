@@ -35,8 +35,6 @@ export class ClientTableComponent implements OnInit {
       this.template.push(this.element)
       this.element['codigo'] = Math.random() * (1000000 - 1000) + 1000;
       //*************************** testing only  ends***********************************
-
-      console.log(this.element['codigo']);
     }
   }
 
