@@ -1,4 +1,3 @@
-
 .container {
   padding: 3vh 2vh 2vh 9vh;
 }
@@ -38,3 +37,32 @@ h4 {
   background-color: #21274d;
   border: #21274d;
 }
+
+/******************** Modal Styles ***************************/
+
+.modal-header {
+  background: #4D5DB7;
+  color: white;
+  padding: 0.2rem;
+}
+
+.close {
+  color: white;
+  text-shadow: none;
+}
+
+.modal-footer {
+  justify-content: center;
+  padding: 0.2rem;
+  border: none;
+}
+
+div.modal-body div h6 {
+  margin: 0;
+}
+
+.modal-dialog{
+  max-width: 60vw;
+}
+
+/******************** Modal Styles ends***************************/

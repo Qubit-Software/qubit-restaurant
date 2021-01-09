@@ -1,41 +1,14 @@
-#profilePic {
-    clip-path: circle(50% at 50% 50%);
-    background-color: #6f6e6e26;
-}
-
-#userDiv {
-    margin-right: 3rem;
-}
-
-#searchDiv {
-    padding-left: 2rem;
-}
-
-#search {
-    border-radius: 1.25rem!important;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #4D5DB7;
-    color: white;
-    background-image: url(../../../../assets/images/iconos/search.png);
-    background-size: 4%;
-    background-repeat: no-repeat;
-    text-indent: 5%;
-    background-position: 10px 7px;
-}
-
 .pagination /deep/ .ngx-pagination .current {
     background: #4D5DB7;
     clip-path: circle(45% at 50% 50%);
     margin: 1rem;
 }
 
-#tableCorner{
+#tableCorner {
     background-color: #4D5DB7;
     color: white;
-
 }
-.editIcons{
+
+.editIcons {
     cursor: pointer;
 }

@@ -22,6 +22,8 @@ export class FacturaProductoComponent implements OnInit {
     this.dataArray.push(s);
   }
   deleteProduct(element) {
+    console.log('herre');
     this.dataArray.splice(element, 1);
+    alert('test');
   }
 }

@@ -15,6 +15,8 @@ import { ClientTableComponent } from './Components/clientes/client-table/client-
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReportsComponent } from './Components/Reports/reports/reports.component';
 import { ChartsModule } from 'ng2-charts';
+import { BalanceComponent } from './Components/Balance/balance/balance.component';
+
 
 
 @NgModule({
@@ -28,7 +30,8 @@ import { ChartsModule } from 'ng2-charts';
     FacturaProductoComponent,
     ClientsComponent,
     ClientTableComponent,
-    ReportsComponent
+    ReportsComponent,
+    BalanceComponent
   ],
   imports: [
     BrowserModule,
