@@ -50,6 +50,7 @@ body {
   padding: 2rem 2rem 2rem 2rem;
   border: 1px solid #ffffff;
   border-radius: 20px;
+  box-shadow: 3px 5px 15px 1px rgba(0, 0, 0, 0.2)
 }
 
 /*-----------------Car Styles Ends----------------------*/
