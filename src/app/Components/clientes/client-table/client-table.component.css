@@ -1,13 +1,4 @@
-.pagination /deep/ .ngx-pagination .current {
-    background: #4D5DB7;
-    clip-path: circle(45% at 50% 50%);
-    margin: 1rem;
-}
 
-#tableCorner {
-    background-color: #4D5DB7;
-    color: white;
-}
 
 .editIcons {
     cursor: pointer;

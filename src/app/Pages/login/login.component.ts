@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserModel } from 'src/app/Models/User';
 import Swal from 'sweetalert2';
 import { AuthService } from '../../Services/auth.service';
 
+=======
+import Swal from 'sweetalert2';
+>>>>>>> d4d606171b1abbc4a9111b5fc5319d57d481ee1b
 @Component({
   selector: 'app-loggin',
   templateUrl: './login.component.html',
@@ -16,6 +20,22 @@ export class LogginComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    this.login();
+  }
+  private login() {
+    Swal.fire({
+      allowOutsideClick: false,
+      title: 'Espere por favor'
+    });
+    Swal.showLoading();
+    setTimeout(() => {
+      Swal.close();
+      this.error();
+      setTimeout(() => {
+        Swal.close();
+      }, 2000);
+    }, 2000);
+
   }
 
   login(form: NgForm): void {
