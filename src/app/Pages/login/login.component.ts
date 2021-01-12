@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserModel } from 'src/app/Models/User';
 import Swal from 'sweetalert2';
+import { AuthService } from '../../Services/auth.service';
+
+=======
+import Swal from 'sweetalert2';
+>>>>>>> d4d606171b1abbc4a9111b5fc5319d57d481ee1b
 @Component({
   selector: 'app-loggin',
   templateUrl: './login.component.html',
@@ -7,7 +16,8 @@ import Swal from 'sweetalert2';
 })
 export class LogginComponent implements OnInit {
 
-  constructor() { }
+  usuario: UserModel = new UserModel();
+  constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.login();
@@ -28,11 +38,28 @@ export class LogginComponent implements OnInit {
 
   }
 
-  private error() {
+  login(form: NgForm): void {
+
+    if (form.invalid) { return; }
+
     Swal.fire({
-      title: 'Oops... Something went wrong',
-      icon: 'error',
-      showConfirmButton: false
-    })
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Espere por favor'
+    });
+    Swal.showLoading();
+
+    this.auth.login(this.usuario).subscribe(resp => {
+      Swal.close();
+      this.router.navigateByUrl('/home/facturacion');
+    }, (err) => {
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error al autenticar',
+        text: 'Revisa tus credenciales antes de acceder'
+      });
+      console.log(err);
+    });
   }
 }
