@@ -91,13 +91,15 @@ table {
   background-color: #343E7D;
   color: white;
 }
-.btn:hover{
+
+.btn:hover {
   background-color: #21274d;
   color: white;
 }
-button:focus{
+
+button:focus {
   border: none;
-  outline:none;
+  outline: none;
 }
 
 /*-----------------Button styless Ends----------------------*/
@@ -124,8 +126,6 @@ button:focus{
 
 /*__________________Search  styles ends_____________________-*/
 
-
-
 /*__________________UserIcon  styles ends_____________________-*/
 
 #profilePic {
@@ -134,3 +134,36 @@ button:focus{
 }
 
 /*__________________UserIcon  styles ends_____________________-*/
+
+/*______________________Sweet Alert  styles _____________________-*/
+
+.swal2-popup {
+  padding: 0rem !important;
+}
+
+.swal2-header {
+  padding: 0rem !important;
+  background-color: #4D5DB7;
+}
+
+.swal2-header h2 {
+  color: white !important;
+  font-family: Poppins-Medium;
+  padding: 1rem;
+}
+
+.swal2-actions {
+  padding: 1rem 0rem !important;
+  margin: 0rem !important;
+}
+
+.swal2-loader {
+  width: 3.2em !important;
+  height: 3.2em !important;
+}
+
+.swal2-content {
+  font-family: Poppins-Light !important;
+}
+
+/*__________________Sweet Alert styles ends_____________________-*/
