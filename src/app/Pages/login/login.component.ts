@@ -24,7 +24,7 @@ export class LogginComponent implements OnInit {
       setTimeout(() => {
         Swal.close();
       }, 2000);
-    }, 2000);
+    }, 200000);
 
   }
 
