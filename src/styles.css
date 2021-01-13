@@ -161,6 +161,7 @@ button:focus {
 .swal2-loader {
   width: 3.2em !important;
   height: 3.2em !important;
+  border-color: #4d5db7 transparent #4d5db7 transparent !important;
 }
 
 .swal2-content {
