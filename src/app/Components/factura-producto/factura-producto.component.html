@@ -13,7 +13,6 @@
             <th>Precio</th>
             <th>Precio Base</th>
             <th>IVA</th>
-            <th>Subtotal</th>
           </tr>
           <tr class="poppinsLight" *ngFor="let i of dataArray;let p=index">
             <td>B4569600</td>
@@ -24,7 +23,6 @@
             <td>$36.900</td>
             <td>$29.889</td>
             <td>$7.011</td>
-            <td>$36.900</td>
             <td *ngIf="p!=0" (click)="deleteProduct(p)" style="cursor: pointer;">
               <img src="../../../assets/images/iconos/delete.svg" height="15px" alt="">
             </td>
@@ -72,6 +70,10 @@
         <table class="tableBottom">
           <tbody class="tableBottom">
             <tr class="tableBottom">
+              <td>Subtotal:</td>
+              <td>$91.820</td>
+            </tr>
+            <tr>
               <td>Total Venta:</td>
               <td>$91.820</td>
             </tr>
