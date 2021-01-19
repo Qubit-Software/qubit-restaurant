@@ -144,26 +144,36 @@ button:focus {
 
 .swal2-header {
   padding: 0rem !important;
-  background-color: #4D5DB7;
 }
 
 .swal2-header h2 {
-  color: white !important;
+  color: #343E7D !important;
   font-family: Poppins-Medium;
-  padding: 1rem;
 }
 
 .swal2-actions {
   padding: 1rem 0rem !important;
   margin: 0rem !important;
 }
-
+.swal2-styled.swal2-confirm {
+  background-color: #343E7D !important;
+  color: white !important;
+}
+.swal2-styled.swal2-deny{
+  background-color: #ADB7F0 !important;
+}
+.swal2-styled.swal2-cancel{
+  background-color: #9299B9 !important;
+}
 .swal2-loader {
   width: 3.2em !important;
   height: 3.2em !important;
   border-color: #4d5db7 transparent #4d5db7 transparent !important;
 }
-
+.swal2-icon.swal2-warning{
+  border-color: #343E7D !important;
+  color: #343E7D !important;
+}
 .swal2-content {
   font-family: Poppins-Light !important;
 }

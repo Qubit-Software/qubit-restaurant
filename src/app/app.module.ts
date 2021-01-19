@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,9 +18,11 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { ReportsComponent } from './Components/Reports/reports/reports.component';
 import { ChartsModule } from 'ng2-charts';
 import { BalanceComponent } from './Components/Balance/balance/balance.component';
-
-
-
+import { FilterPipe } from './filter.pipe';
+import { environment } from "src/environments/environment";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { InventarioComponent } from './Components/inventario/inventario.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,14 +33,18 @@ import { BalanceComponent } from './Components/Balance/balance/balance.component
     ClientesComponent,
     FacturaProductoComponent,
     ClientsComponent,
+    FilterPipe,
     ClientTableComponent,
     ReportsComponent,
-    BalanceComponent
-  ],
+    BalanceComponent,
+    InventarioComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    ReactiveFormsModule,
     FontAwesomeModule,
     HttpClientModule,
     NgxPaginationModule,

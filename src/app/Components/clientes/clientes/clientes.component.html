@@ -2,27 +2,30 @@
   <div class="row">
     <div class="col-md-3 ml-4 ">
       <h4 class="poppinsMedium">Cliente</h4>
-      <input type="text" class="poppinsLight form__field form-control text-left" value="Andres Orjuez" name="user"
-        disabled />
+      <input type="text" class="poppinsLight form__field form-control text-left" [(ngModel)]="consumidor.nombre"
+        placeholder="Nombre" disabled />
       <h4 class="poppinsMedium">Correo Electronico</h4>
-      <input type="text" class="poppinsLight form__field form-control text-left" value="andresorjuez15@gmail.com"
-        name="user" disabled />
+      <input type="text" class="poppinsLight form__field form-control text-left" [(ngModel)]="consumidor.correo"
+        placeholder="Correo" disabled />
     </div>
     <div class="col-md-3 offset-1">
       <h4 class="poppinsMedium">C.C.</h4>
-      <input type="text" class="poppinsLight form__field form-control text-left" value="1025489745" name="user"
-        disabled />
+      <div class="inputCC">
+        <input type="number" class="poppinsLight form__field form-control text-left" [(ngModel)]="consumidor.cedula"
+          name="cedula" placeholder="CC" />
+        <fa-icon [icon]="faSearch" class="icon" (click)='search()'></fa-icon>
+      </div>
       <h4 class="poppinsMedium">Dirección </h4>
-      <input type="text" class="poppinsLight form__field form-control text-left" value="calle 13 # 17-29" name="user"
-        disabled />
+      <input type="text" class="poppinsLight form__field form-control text-left" [(ngModel)]="consumidor.direccion"
+        placeholder="direccion" disabled />
     </div>
     <div class="col-md-3 offset-1">
       <h4 class="poppinsMedium">Celular:</h4>
-      <input type="text" class="poppinsLight form__field form-control text-left" value="3168250749" name="user"
-        disabled />
+      <input type="text" class="poppinsLight form__field form-control text-left" [(ngModel)]="consumidor.telefono"
+        placeholder="Telefono" disabled />
       <h4 class="poppinsMedium">Ciudad</h4>
-      <input type="text" class="poppinsLight form__field form-control text-left" value="Zipaquirá" name="user"
-        disabled />
+      <input type="text" class="poppinsLight form__field form-control text-left" [(ngModel)]="consumidor.ciudad"
+        placeholder="Ciudad" disabled />
     </div>
   </div>
   <button (click)='openModal()' class="btn-floating">
@@ -41,38 +44,46 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-          <div class="row mb-3">
-            <div class="col-4">
-              <h6 class="poppinsMedium">Nombre</h6>
-              <span class="poppinsLight">Andrés Orjuez</span>
+          <div class="form-group" [formGroup]="form">
+            <div class="row mb-3">
+              <div class="col-4">
+                <h6 class="poppinsMedium">Nombre</h6>
+                <input name="nombre" type="text" class="poppinsLight form__field form-control text-left"
+                  formControlName="nombre" placeholder="Nombre" />
+              </div>
+              <div class="col-4">
+                <h6 class="poppinsMedium">C.C</h6>
+                <input type="number" class="poppinsLight form__field form-control text-left" name="cedula"
+                formControlName="cedula" placeholder="Cedula" />
+              </div>
+              <div class="col-4">
+                <h6 class="poppinsMedium">Celular</h6>
+                <input type="number" class="poppinsLight form__field form-control text-left" name="telefono"
+                formControlName="telefono" placeholder="Telefono" />
+              </div>
             </div>
-            <div class="col-4">
-              <h6 class="poppinsMedium">C.C</h6>
-              <span class="poppinsLight">1025489745</span>
-            </div>
-            <div class="col-4">
-              <h6 class="poppinsMedium">Celular</h6>
-              <span class="poppinsLight">3168250749</span>
-            </div>
-          </div>
-          <div class="row mb-3">
-            <div class="col-4">
-              <h6 class="poppinsMedium">Correo Electronico</h6>
-              <span class="poppinsLight">andresorjuez15@gmail.com</span>
-            </div>
-            <div class="col-4">
-              <h6 class="poppinsMedium">Dirección</h6>
-              <span class="poppinsLight">calle 13 # 17-29</span>
-            </div>
-            <div class="col-4">
-              <h6 class="poppinsMedium">Ciudad</h6>
-              <span class="poppinsLight">Zipaquirá</span>
+            <div class="row mb-3">
+              <div class="col-4">
+                <h6 class="poppinsMedium">Correo Electronico</h6>
+                <input type="text" class="poppinsLight form__field form-control text-left" name="correo"
+                formControlName="correo" placeholder="Corre" />
+              </div>
+              <div class="col-4">
+                <h6 class="poppinsMedium">Dirección</h6>
+                <input type="text" class="poppinsLight form__field form-control text-left" name="direccion"
+                formControlName="direccion" placeholder="Direccion" />
+              </div>
+              <div class="col-4">
+                <h6 class="poppinsMedium">Ciudad</h6>
+                <input type="text" class="poppinsLight form__field form-control text-left" name="ciudad"
+                formControlName="ciudad" placeholder="Ciudad" />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer mb-2">
-        <button type="button" class="btn btn-secondary mr-4">Crear cliente</button>
+        <button type="submit" class="btn btn-secondary mr-4" (click)='createCliente()'>Crear cliente</button>
         <button type="button" class="btn btn-primary ml-2" (click)='closeModal()'>Cancelar</button>
       </div>
     </div>

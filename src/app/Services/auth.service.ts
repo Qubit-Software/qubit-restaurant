@@ -16,12 +16,9 @@ export class AuthService {
     this.readToken();
   }
   login(usuario: UserModel) {
-    console.log(usuario);
     const authData = {
       ...usuario
     };
-    console.log( `${this.url}/login`);
-    console.log(authData);
     return this.http.post(
       `${this.url}/login`, authData).pipe(
         map(resp => {
@@ -30,7 +27,6 @@ export class AuthService {
           return resp;
         })
       );
-
   }
   // LOGOUT*************************************
   logout() {

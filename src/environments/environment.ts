@@ -4,7 +4,17 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:3000/api'
+  apiUrl: 'http://127.0.0.1:3000/api',
+  firebaseConfig: {
+    apiKey: "AIzaSyCWncvXi3wqk3Jbe-rs076xpz0IGGTwBfM",
+    authDomain: "qubit-contable.firebaseapp.com",
+    databaseURL: "https://qubit-contable-default-rtdb.firebaseio.com",
+    projectId: "qubit-contable",
+    storageBucket: "qubit-contable.appspot.com",
+    messagingSenderId: "948024799620",
+    appId: "1:948024799620:web:bae8eb075726f930066dd1",
+    measurementId: "G-R9BCQKHZPT"
+  },
 };
 
 /*
