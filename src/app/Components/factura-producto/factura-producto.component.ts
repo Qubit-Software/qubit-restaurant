@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { InventarioService } from '../../Services/inventario.service';
 
 @Component({
   selector: 'app-factura-producto',
@@ -12,6 +11,7 @@ export class FacturaProductoComponent implements OnInit {
   active = 0;
   dataArray: number[];
   faPlus = faPlus;
+
   constructor() { }
 
   ngOnInit(): void {

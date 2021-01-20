@@ -6,6 +6,7 @@ import { FacturacionComponent } from './Pages/facturacion/facturacion.component'
 import { ClientsComponent } from './Pages/clients/clients.component';
 import { ReportsComponent } from './Components/Reports/reports/reports.component';
 import { BalanceComponent } from './Components/Balance/balance/balance.component';
+import { InventarioComponent } from './Components/inventario/inventario.component';
 
 const routes: Routes = [
   { path: '', component: LogginComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: 'facturacion', component: FacturacionComponent },
       { path: 'clients', component: ClientsComponent },
       { path: 'reports', component: ReportsComponent },
+      { path: 'inventario', component: InventarioComponent },
       { path: 'balance', component: BalanceComponent }
     ]
   },
