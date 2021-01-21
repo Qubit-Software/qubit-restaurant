@@ -16,13 +16,23 @@ export class InventarioService {
     let inventarioNames = this.firestore.collection('/inventario_names').doc('1')
     return inventarioNames.snapshotChanges().pipe(
       map((changes) => {
-        console.log(changes.payload.data());
         return changes.payload.data()
       })
     );
   }
-
-  getAllInventario(){
+  createInventario(inventario: Object) {
+    const authData = {
+      ...inventario,
+    };
+    console.log(authData);
+    return this.http.post(
+      `${this.url}/new`, authData).pipe(
+        map(resp => {
+          return resp;
+        })
+      );
+  }
+  getAllInventario() {
     return this.http.get(
       `${this.url}/getAll`).pipe(
         map(resp => {
@@ -30,5 +40,25 @@ export class InventarioService {
         })
       );
   }
+  updateInventario(inventario: Object) {
+    const authData = {
+      ...inventario
+    };
+    console.log(authData);
+    return this.http.put(
+      `${this.url}/update/${inventario['id']}`, authData).pipe(
+        map(resp => {
+          return resp;
+        })
+      );
+  }
 
+  deleteOne(id) {
+    return this.http.delete(
+      `${this.url}/delete/${id}`).pipe(
+        map(resp => {
+          return resp;
+        })
+      );
+  }
 }

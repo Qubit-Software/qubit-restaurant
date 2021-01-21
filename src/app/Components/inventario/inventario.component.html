@@ -27,7 +27,12 @@
             <th *ngFor="let col of columnsKey"><input type="text"
                 [className]="(index!=edit) ? 'inputTable' : 'inputEdit'" [(ngModel)]="i[col]"
                 [attr.disabled]="(index!=edit) ? '' : null" /></th>
-            <td class="d-flex justify-content-around qubitIcons">
+            <td class="d-flex justify-content-around qubitIcons" *ngIf="index==0">
+              <button (click)='CreateInventario(index)' class="btn-plus">
+                <fa-icon [icon]="faPlus"></fa-icon>
+              </button>
+            </td>
+            <td class="d-flex justify-content-around qubitIcons" *ngIf="index!=0">
               <img class="editIcons" [src]="(index!=edit)? editIcon : checkIcon"
                 (click)="(index!=edit)? disabledEdit(index) : updateConsumidor(index)" height="15px" alt="">
               <img class="editIcons" src="../../../../assets/images/iconos/delete.svg" (click)="deleteConsumidor(index)"
