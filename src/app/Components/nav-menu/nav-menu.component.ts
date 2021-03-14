@@ -9,7 +9,7 @@ export class NavMenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    $( "li" ).hover(
+    $( ".sidebar-nav li" ).hover(
       function() {
         let imageEl=this.getElementsByTagName('img')[0];
         let altImage=imageEl.alt;

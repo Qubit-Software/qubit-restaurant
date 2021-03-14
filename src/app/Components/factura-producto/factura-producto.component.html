@@ -47,12 +47,18 @@
         <div class="row">
           <div class="col-md-4">
             <h4>Forma de pago</h4>
-            <input type="text" class="form__field" value="Efectivo" name="user" disabled />
+            <div class="selectdiv">
+              <select class="form__field" [(ngModel)]="seleccionado">
+                <option value="Efectivo" selected>Efectivo</option>
+                <option value="Tarjeta">Tarjeta</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
           </div>
-          <div class="col-md-4">
+          <!-- <div class="col-md-4">
             <h4>Entidad</h4>
             <input type="text" class="form__field" value="" name="user" disabled />
-          </div>
+          </div> -->
         </div>
         <div class="row">
           <div class="col-md-4">
@@ -73,7 +79,7 @@
               <td>Subtotal:</td>
               <td>$91.820</td>
             </tr>
-            <tr>
+            <tr id="trTotalVenta">
               <td>Total Venta:</td>
               <td>$91.820</td>
             </tr>
@@ -81,20 +87,36 @@
               <td>Descuento:</td>
               <td>$10.000</td>
             </tr>
-            <tr>
+            <tr *ngIf="templateFactura">
               <td>Base liquidación:</td>
               <td>$81.820</td>
             </tr>
-            <tr>
+            <tr *ngIf="templateFactura">
               <td>IVA:</td>
+              <td>$10.820</td>
+            </tr>
+            <tr *ngIf="!templateFactura">
+              <td>Valor Total:</td>
+              <td>$81.820</td>
+            </tr>
+            <tr *ngIf="!templateFactura">
+              <td>Descuento:</td>
               <td>$10.820</td>
             </tr>
           </tbody>
         </table>
-        <table class="tableBottom">
+        <table class="tableBottom" *ngIf="templateFactura">
           <tbody class="tableBottom">
             <tr class="ContainerTableFactura">
               <td>Valor Total:</td>
+              <td>$71.000</td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="tableBottom" *ngIf="!templateFactura">
+          <tbody class="tableBottom">
+            <tr class="ContainerTableFactura">
+              <td>Saldo:</td>
               <td>$71.000</td>
             </tr>
           </tbody>

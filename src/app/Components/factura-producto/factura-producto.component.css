@@ -18,6 +18,9 @@ h4 {
   transition: border-color 0.2s;
   margin-bottom: 4vh;
 }
+.tableBottom{
+  background-color: white;
+}
 .tableBottom td {
   border-collapse: separate;
   border-spacing: 0;
@@ -37,8 +40,10 @@ h4 {
 
 .ContainerTableFactura:first-child td:first-child { border-top-left-radius: 8px; }
 .ContainerTableFactura:first-child td:last-child { border-top-right-radius: 8px; text-align: right;}
-.ContainerTableFactura:last-child td:first-child { border-bottom-left-radius: 8px; }
+.ContainerTableFactura:last-child  td:first-child { border-bottom-left-radius: 8px; }
 .ContainerTableFactura:last-child td:last-child { border-bottom-right-radius: 8px; }
+
+
 
 .Pagar {
   font-size: 13px;
@@ -64,6 +69,45 @@ h4 {
   color: white;
   float: left;
 }
+.selectdiv {
+  position: relative;
+  float: left;
+  width: 90%;
+}
+.selectdiv select option{
+  border: none;
+  border: 1px solid white;
+}
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+display: none;
+}
+
+.selectdiv:after {
+  content: '>';
+  font: 14px "Consolas", monospace;
+  color: #343E7D;
+  transform: rotate(90deg);
+  right: 11px;
+  top: 2px;
+  padding: 0 0 2px;
+  position: absolute;
+  pointer-events: none;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+  display: block;
+  background-color: white;
+  background-image: none;
+  border: 1px solid white;
+  border-bottom: 1px solid#DAE0F6;
+  -ms-word-break: normal;
+  word-break: normal;
+}
 
 .Cancelar:hover {
   background-color: white;
@@ -77,3 +121,17 @@ h4 {
   background-color: #21274d;
   color: white;
 }
+#trTotalVenta{
+  background-color: #CBD2EC;
+  border-radius: 12px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+
+}
+#trTotalVenta td{
+  background-color: #CBD2EC;
+}
+.ContainerTableFactura:first-child, #trTotalVenta td:first-child { border-top-left-radius: 8px; }
+.ContainerTableFactura:first-child, #trTotalVenta td:last-child { border-top-right-radius: 8px; text-align: right;}
+.ContainerTableFactura:last-child , #trTotalVenta td:first-child { border-bottom-left-radius: 8px; }
+.ContainerTableFactura:last-child , #trTotalVenta td:last-child { border-bottom-right-radius: 8px; } 
