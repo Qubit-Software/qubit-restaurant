@@ -1,0 +1,38 @@
+#search{
+    background-color: #ADB7F0;
+    width: 100%;
+    padding-top: 0px;
+    color: #343E7D;
+    background-image: url(../../../../assets/images/iconos/searchColor.png);
+    background-position: 10px 10px;
+}
+.settingsImg{
+    float: right;
+    margin-right: 1rem;
+}
+.categoryTable{
+    margin-top: 2rem;
+}
+.categoryCard{
+    padding: 0.3rem;
+    text-align: center;
+    background-color: #ADB7F0;
+    border: 1px solid #ADB7F0;
+    border-radius: 20px;
+    height: 167px;
+}
+.categoryCard img{
+    width: 100px;
+}
+.categoryCard h4{
+    font-size: 20px;
+    font-weight: 900;
+    width: 79%;
+    position: absolute;
+    bottom: 0px;
+}
+.categoryGrid{
+    flex: 0 0 20%;
+    max-width: 20%;
+    margin-bottom: 1rem;
+}

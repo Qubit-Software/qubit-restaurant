@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { OrdenModel } from 'src/app/Models/Orden';
 
 @Component({
   selector: 'app-factura-producto',
@@ -7,26 +8,29 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./factura-producto.component.css']
 })
 export class FacturaProductoComponent implements OnInit {
-  @Input() templateFactura: boolean;
 
   active = 0;
-  dataArray: number[];
+  dataArray: OrdenModel[];
   seleccionado:string;
   faPlus = faPlus;
+  mesas: string[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.dataArray = new Array()
-    console.log(this.templateFactura);
+    this.mesas = new Array();
+    this.mesas[0]="Mesa 1";
+    this.mesas[1]="Mesa 2";
+    this.dataArray = new Array();
+    let firstOrden=new OrdenModel();
+    this.dataArray.push(firstOrden);
   }
 
-  addForm() {
-    let s = 1;
-    this.dataArray.push(s);
+  CreateInventario(index) {
+    
   }
-  deleteProduct(element) {
-    this.dataArray.splice(element, 1);
-    alert('test');
+  
+  change(i:number){
+
   }
 }

@@ -1,0 +1,62 @@
+.container{
+  width: 100%;
+  max-width: 100%;
+  padding-top: 1rem;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+h3{
+  display: inline-block;
+}
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    color: #818181;
+    font-size: 15px;
+}
+.sidenav a:hover {
+    color: #343E7D;
+    text-decoration: none;
+  }
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+:host ::ng-deep .sidebar {
+    position: static;
+    max-width: 100%;
+    height: 100% !important;
+    overflow-y: hidden;
+}
+:host ::ng-deep .card{
+  margin: 0.5rem;
+  padding: 1.5rem 1rem 1rem 1rem;
+}
+.card{
+  margin: 0.5rem;
+  padding: 1.5rem 1rem 1rem 1rem;
+}
+#mapDiv span{
+  position: relative;
+  display: inline-block;
+  top: -7px;
+  left: 1rem;
+  margin-right: 1rem;
+}
+#mapDiv img{
+  vertical-align: sub;
+  text-align: center;
+  margin-right: 0.3rem;
+}
+:host ::ng-deep .card h4{
+  font-size: 13px;
+}

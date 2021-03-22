@@ -31,7 +31,7 @@ export class LogginComponent implements OnInit {
 
     this.auth.login(this.usuario).subscribe(resp => {
       Swal.close();
-      this.router.navigateByUrl('/home/facturacion');
+      this.router.navigateByUrl('/main/facturacion');
     }, (err) => {
       Swal.close();
       Swal.fire({

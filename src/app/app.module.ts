@@ -23,6 +23,13 @@ import { environment } from "src/environments/environment";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { InventarioComponent } from './Components/inventario/inventario.component';
+import { ReportComponent } from './Pages/report/report.component';
+import { InventoryComponent } from './Pages/inventory/inventory.component';
+import { MainComponent } from './Pages/main/main.component';
+import { MenuComponent } from './Pages/menu/menu.component';
+import { MenuTableComponent } from './Components/menuComponents/menu-table/menu-table.component';
+import { MenuProductsComponent } from './Components/menuComponents/menu-products/menu-products.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,8 +43,14 @@ import { InventarioComponent } from './Components/inventario/inventario.componen
     FilterPipe,
     ClientTableComponent,
     ReportsComponent,
+    ReportComponent,
     BalanceComponent,
-    InventarioComponent,],
+    InventarioComponent,
+    InventoryComponent,
+    MainComponent,
+    MenuComponent,
+    MenuTableComponent,
+    MenuProductsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -48,7 +61,7 @@ import { InventarioComponent } from './Components/inventario/inventario.componen
     FontAwesomeModule,
     HttpClientModule,
     NgxPaginationModule,
-    ChartsModule
+    ChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

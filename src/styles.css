@@ -92,7 +92,9 @@ table {
   background-color: #343E7D;
   color: white;
 }
-
+.btn-primary{
+  border-color:#343E7D;
+}
 .btn:hover {
   background-color: #21274d;
   color: white;

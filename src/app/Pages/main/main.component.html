@@ -1,0 +1,22 @@
+<div id="mySidenav" class="sidenav" [style.width]="widthModal" #menu>
+    <a href="javascript:void(0)" class="closebtn" (click)="openModal()" #close>&times;</a>
+    <app-nav-menu></app-nav-menu>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="mapDiv" class="card">
+                <div class="row">
+                    <span style="font-size:30px;cursor:pointer" (click)="openModal()" #toggleButton>&#9776;</span>
+                    <div class="col-md-8 mb-4">
+                        <img src="../../../assets/images/iconos/isologo.png" alt="isologo" width="25"><h3 class="poppinsMedium">Facturación</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

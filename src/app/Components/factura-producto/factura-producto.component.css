@@ -4,7 +4,38 @@ h4 {
   color: #343E7D;
   font-family: Poppins-Medium;
 }
-
+.qubitIcons{
+  border: none;
+  background-color: white;
+  padding: 7px;
+}
+.btn-plus {
+  padding: 0px 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #343E7D;
+  color: white;
+  border: #343E7D;
+}
+.dropdown{
+  margin-bottom: 1rem;
+}
+.dropdown .btn{
+  padding: 3px;
+  padding-left: 5px;
+  font-size: 12px;
+  width: 18%;
+  text-align: left;
+}
+.dropdown-toggle::after {
+  margin-left: 2.8em;
+}
+.dropdown .btn-primary.focus, .btn-primary:focus {
+  color: #fff;
+  background-color: #343E7D;
+  border-color: #343E7D;
+}
 .form__field {
   font-family: Poppins-Light;
   width: 90%;
@@ -21,12 +52,26 @@ h4 {
 .tableBottom{
   background-color: white;
 }
+.tableCambio{
+  margin-top: 5rem;
+  background-color: white;
+}
 .tableBottom td {
   border-collapse: separate;
   border-spacing: 0;
   color: #343E7D;
   border: hidden;
   font-size: 13px;
+  font-weight: 500;
+  font-family: Poppins-Light;
+  background-color: white;
+}
+.tableCambio td {
+  border-collapse: separate;
+  border-spacing: 0;
+  color: #343E7D;
+  border: hidden;
+  font-size: 15px;
   font-weight: 500;
   font-family: Poppins-Light;
   background-color: white;
@@ -99,7 +144,6 @@ display: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  /* Add some styling */
   display: block;
   background-color: white;
   background-image: none;
@@ -126,12 +170,16 @@ display: none;
   border-radius: 12px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
-
 }
+
 #trTotalVenta td{
   background-color: #CBD2EC;
 }
 .ContainerTableFactura:first-child, #trTotalVenta td:first-child { border-top-left-radius: 8px; }
 .ContainerTableFactura:first-child, #trTotalVenta td:last-child { border-top-right-radius: 8px; text-align: right;}
 .ContainerTableFactura:last-child , #trTotalVenta td:first-child { border-bottom-left-radius: 8px; }
-.ContainerTableFactura:last-child , #trTotalVenta td:last-child { border-bottom-right-radius: 8px; } 
+.ContainerTableFactura:last-child , #trTotalVenta td:last-child { border-bottom-right-radius: 8px; }
+
+.rowSeparate{
+  height: 1rem;
+}

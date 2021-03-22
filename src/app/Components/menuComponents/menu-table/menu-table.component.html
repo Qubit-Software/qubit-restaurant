@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4 class="poppinsMedium">Menú</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="searchDiv" class="col">
+                            <input id="search" type="text" class="form-control " [(ngModel)]="searchText">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <img class="settingsImg" src="../../../assets/images/iconos/settings.png" alt="" width="35">
+                    </div>
+                </div>
+                <div class="row categoryTable">
+                    <div class="col categoryGrid" *ngFor="let categoria of categoriasData ; let index = index">
+                        <div class="categoryCard">
+                            <img src="{{categoria.imagen}}" alt="" >
+                            <h4 class="poppinsLight">{{categoria.nombre}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
