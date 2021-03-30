@@ -63,7 +63,6 @@ export class InventarioComponent implements OnInit {
     this.inventarioService.getAllInventario().subscribe((res: any[]) => {
       this.inventario = res['inventario'];
       this.inventario.unshift(this.newInventario);
-      console.log(this.inventario);
       Swal.close();
     }, err => {
       this.inventario = new Array();

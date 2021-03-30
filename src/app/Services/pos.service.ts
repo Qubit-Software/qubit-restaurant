@@ -24,20 +24,21 @@ export class PosService {
   }
   posVenta(nit, tel, direccion, ciudad, factura, fecha, products, subtotal, servVol, total, efectivo, cambio, idF) {
     const authData = {
-      nit, 
-      tel, 
-      direccion, 
-      ciudad, 
-      factura, 
-      fecha, 
-      products, 
-      subtotal, 
-      servVol, 
-      total, 
-      efectivo, 
-      cambio, 
+      nit,
+      tel,
+      direccion,
+      ciudad,
+      factura,
+      fecha,
+      products,
+      subtotal,
+      servVol,
+      total,
+      efectivo,
+      cambio,
       idF
     };
+    // console.log(authData);
     return this.http.post(
       `${this.urlPos}/venta`, authData).pipe(
         map(resp => {

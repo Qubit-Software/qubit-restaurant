@@ -5,7 +5,11 @@ import { OrdenModel } from 'src/app/Models/Orden';
 import { OrderService } from 'src/app/Services/order.service';
 import { PosService } from 'src/app/Services/pos.service';
 import { SucursalService } from 'src/app/Services/sucursal.service';
+import { HelperFunctions } from 'src/app/helpers/functions';
 import Swal from 'sweetalert2';
+import { from } from 'rxjs';
+import { VentaService } from 'src/app/Services/venta.service';
+import { MesaModel } from 'src/app/Models/Mesas';
 
 @Component({
   selector: 'app-factura-producto',
@@ -19,7 +23,7 @@ export class FacturaProductoComponent implements OnInit {
   dataArray: OrdenModel[];
   seleccionado: string;
   faPlus = faPlus;
-  mesas: string[];
+  mesas: MesaModel[] = new Array();
   subtotal: number = 0;
   baseLiquidacion: number = 0;
   impoConsumo: number = 0;
@@ -30,7 +34,7 @@ export class FacturaProductoComponent implements OnInit {
   cambioCalcule: number = 0;
   consumidorId;
   constructor(private router: Router, private route: ActivatedRoute, private order: OrderService, private sucursal: SucursalService,
-    private pos: PosService) {
+    private pos: PosService, private venta: VentaService) {
     order.openModal$.subscribe((newBool: boolean[]) => {
       this.orderModalOpen = newBool[0];
       this.openModalOrder();
@@ -46,6 +50,7 @@ export class FacturaProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mesas.push(new MesaModel());
     this.dataArray = this.order.getOrder();
     $(".recibeInput").on({
       "focus": function (event) {
@@ -63,15 +68,11 @@ export class FacturaProductoComponent implements OnInit {
   llenaMesas() {
     this.mesas = new Array();
     if (this.sucursal.mesas != null) {
-      this.sucursal.mesas.forEach(mesa => {
-        this.mesas.push(`Mesa ${mesa.mesa}`)
-      });
+      this.mesas = this.sucursal.mesas;
     } else {
       this.sucursal.getSucursalInfo().subscribe(res => {
         this.mesas = new Array();
-        this.sucursal.mesas.forEach(mesa => {
-          this.mesas.push(`Mesa ${mesa.mesa}`)
-        });
+        this.mesas = this.sucursal.mesas;
       });
     }
 
@@ -211,6 +212,15 @@ export class FacturaProductoComponent implements OnInit {
       });
       return
     }
+    if (this.seleccionado == null) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor ingrese la forma de pago',
+        confirmButtonText: 'Ok',
+      });
+      return
+    }
     if (this.sucursal.empresa == null) {
       this.sucursal.getSucursalInfo().subscribe(res => {
         this.enviaPos();
@@ -229,21 +239,55 @@ export class FacturaProductoComponent implements OnInit {
     this.pos.getFactura(this.sucursal.empresa.id).subscribe(res => {
       let factura = res['factura'];
       const date = new Date();
-      let fecha = `${date.getDay()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+      let fecha = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+      console.log(fecha);
       let products: ProductsPosModel[];
       products = new Array();
       this.dataArray.forEach(element => {
         let prod = new ProductsPosModel();
         prod.nombre = element.descripcion;
         prod.cantidad = String(element.cantidad);
-        prod.precio = element.precio;
+        prod.precio = HelperFunctions.formatter.format(+element.precio);
         products.push(prod);
       });
+      let menuArray: Object[];
+      menuArray = new Array();
+      this.dataArray.forEach(element => {
+        let menu = {
+          "cantidad": element.cantidad,
+          "menuId": element.id_product
+        };
+        menuArray.push(menu);
+      });
+      let recibe = +(this.recibeInput.replace("$", "").replace(".", ""));
       this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
-        this.sucursal.sucursal.ciudad, factura, fecha, products, this.subtotal, this.propina, this.total, this.recibeInput,
-        this.cambioCalcule, factura).subscribe(res => {
-
-        })
+        this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(this.propina),
+        HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
+        HelperFunctions.formatter.format(this.cambioCalcule), factura).subscribe(res => {
+          this.venta.createVenta(this.sucursal.empresa.id, this.total, date, this.seleccionado, this.sucursal.sucursal.id,
+            this.consumidorId, this.mesas[0].id, menuArray).subscribe(res => {
+              Swal.close();
+              Swal.fire('Ticket impreso',
+                'El ticket se ha dispensado con exito',
+                'success');
+            }, (err) => {
+              Swal.close();
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Vuelve a intentarlo'
+              });
+              console.log(err);
+            });
+        }, (err) => {
+          Swal.close();
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se encuentra la impresora conectada'
+          });
+          console.log(err);
+        });
     })
   }
 }

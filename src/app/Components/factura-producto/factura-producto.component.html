@@ -3,12 +3,12 @@
     <div class="row">
       <div class="col-md-12 mb-4">
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle poppinsLight mt-2" type="button"
-            data-toggle="dropdown">{{mesas[0]}}
+          <button class="btn btn-primary dropdown-toggle poppinsLight mt-2" type="button" data-toggle="dropdown"
+            *ngIf="mesas.length>0">{{'Mesa '+mesas[0]['mesa']}}
             <span class="caret"></span></button>
           <ul class="dropdown-menu">
             <li *ngFor="let mesa of mesas ; let i=index">
-              <a (click)="change(i)" style="cursor: pointer;" *ngIf="i!=0">{{mesas[i]}}</a>
+              <a (click)="change(i)" style="cursor: pointer;" *ngIf="i!=0">{{'Mesa '+mesas[i].mesa}}</a>
             </li>
           </ul>
         </div>
@@ -92,7 +92,8 @@
             <input type="checkbox" class="serviceCheck" (change)="propinaChange($event)">
             <tr [ngClass]="{ 'underline': !propinaBool }">
               <td>Servicio voluntario:</td>
-              <td class="tdRecibeInput"><input type="text" class="recibeInput" [(ngModel)]="propina" (ngModelChange)="calculaCambio()"></td>
+              <td class="tdRecibeInput"><input type="text" class="recibeInput" [(ngModel)]="propina"
+                  (ngModelChange)="calculaCambio()"></td>
             </tr>
           </tbody>
         </table>
