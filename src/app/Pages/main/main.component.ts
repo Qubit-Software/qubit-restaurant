@@ -16,8 +16,6 @@ export class MainComponent implements OnInit {
   constructor(private renderer: Renderer2) {
 
     this.renderer.listen('window', 'click', (e: Event) => {
-      console.log(e.target);
-      console.log(this.menu.nativeElement);
       if (e.target !== this.toggleButton.nativeElement && e.target !== this.menu.nativeElement && e.target !== this.close.nativeElement) {
         if (this.open) {
           this.openModal();

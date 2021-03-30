@@ -76,6 +76,28 @@ h4 {
   font-family: Poppins-Light;
   background-color: white;
 }
+.recibeInput{
+  background-color: transparent;
+  border: none;
+  width: 80%;
+  color: #343E7D;
+  font-size: 15px;
+  font-family: Poppins-Light;
+  text-align: right;
+}
+.recibeInput:focus{
+  border:none;
+  outline: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.tdRecibeInput{
+  padding: 0px;
+  width: 35%;
+}
 .tableBottom:first-child td:last-child{text-align: right}
 .ContainerTableFactura td{
   color: white;
@@ -87,8 +109,6 @@ h4 {
 .ContainerTableFactura:first-child td:last-child { border-top-right-radius: 8px; text-align: right;}
 .ContainerTableFactura:last-child  td:first-child { border-bottom-left-radius: 8px; }
 .ContainerTableFactura:last-child td:last-child { border-bottom-right-radius: 8px; }
-
-
 
 .Pagar {
   font-size: 13px;
@@ -182,4 +202,72 @@ display: none;
 
 .rowSeparate{
   height: 1rem;
+}
+
+@media (min-width: 576px){
+  .modal-dialog {
+    width: 95%;
+    max-width: 95%;
+  }
+}
+.modal-header{
+  padding: 5px;
+  border-bottom: hidden;
+}
+.modal-body{
+  padding: 0px;
+}
+.modal-content{
+  background-color:transparent;
+  border: none;
+}
+#menuModal .modal-body .close{
+  position: absolute;
+  right: 1rem;
+  z-index: 999;
+  padding: 1.5rem;
+}
+:host ::ng-deep .modal-body .card h4{
+  font-size: 1.2rem;
+}
+:host ::ng-deep .modal-body .card .categoryCard img{
+  width: 95px;
+}
+:host::ng-deep .productCard{
+  cursor: pointer;
+}
+.serviceCheck{
+  position: absolute;
+  left: 0px;
+  margin-top: 8px;
+}
+.slideOrder {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 99999;
+  top: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  transition: 0.5s;
+}
+.slideOrder .closebtn {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  color: #818181;
+  font-size: 15px;
+}
+.slideOrder a:hover {
+  color: #343E7D;
+  text-decoration: none;
+}
+@media screen and (max-height: 450px) {
+.slideOrder {padding-top: 15px;}
+.slideOrder a {font-size: 18px;}
+}
+.underline{
+  text-decoration: line-through;
+  color: gray;
 }

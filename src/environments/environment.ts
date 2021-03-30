@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiUrl: 'http://127.0.0.1:3000/api',
+  apiPos: 'http://127.0.0.1:3001/api',
   firebaseConfig: {
     apiKey: "AIzaSyCWncvXi3wqk3Jbe-rs076xpz0IGGTwBfM",
     authDomain: "qubit-contable.firebaseapp.com",

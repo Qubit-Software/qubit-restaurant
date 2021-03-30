@@ -29,6 +29,9 @@ import { MainComponent } from './Pages/main/main.component';
 import { MenuComponent } from './Pages/menu/menu.component';
 import { MenuTableComponent } from './Components/menuComponents/menu-table/menu-table.component';
 import { MenuProductsComponent } from './Components/menuComponents/menu-products/menu-products.component';
+import { NavOrderComponent } from './Components/order/nav-order/nav-order.component';
+import { CurrencyPipe } from '@angular/common';
+import { CreateMenuComponent } from './Components/menuComponents/create-menu/create-menu.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { MenuProductsComponent } from './Components/menuComponents/menu-products
     MainComponent,
     MenuComponent,
     MenuTableComponent,
-    MenuProductsComponent],
+    MenuProductsComponent,
+    NavOrderComponent,
+    CreateMenuComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -63,7 +68,7 @@ import { MenuProductsComponent } from './Components/menuComponents/menu-products
     NgxPaginationModule,
     ChartsModule,
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

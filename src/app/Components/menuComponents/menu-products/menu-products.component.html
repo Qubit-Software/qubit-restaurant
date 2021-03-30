@@ -1,1 +1,31 @@
-<p>menu-products works!</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-3 iconLeft">
+                        <a [routerLink]="['../menuTable']" [state]="{'modal':modal}" (click)="closeModal()">
+                            <fa-icon class="chevronLeft" [icon]="faChevronLeft"></fa-icon>
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img class="categoryProductImg" [src]="currentCategory.imagen" alt="">
+                        <h4 class="poppinsLight">{{currentCategory.nombre}}</h4>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+                </div>
+                <div id="productTable">
+                    <div class="row">
+                        <div class="col categoryGrid" *ngFor="let product of productsData ; let index = index">
+                            <div class="productCard" (click)="addOrder(product)">
+                                <h4 class="poppinsLight productName">{{product.nombre}}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

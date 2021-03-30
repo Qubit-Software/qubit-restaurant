@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { ConsumidorService } from '../../../Services/consumidor.service';
 import { ConsumidorModel } from '../../../Models/Consumidor';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { OrderService } from 'src/app/Services/order.service';
 
 @Component({
   selector: 'app-clientes',
@@ -11,16 +12,24 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent implements OnInit {
-  consumidor = new ConsumidorModel;
-  newConsumidor = new ConsumidorModel;
+  consumidor = new ConsumidorModel();
+  newConsumidor = new ConsumidorModel();
   form: FormGroup;
   modal = document.getElementById('exampleModal');
   faPlus = faPlus;
   faSearch = faSearch;
-  constructor(private consumidorService: ConsumidorService, private fb: FormBuilder) { }
+  constructor(private consumidorService: ConsumidorService, private fb: FormBuilder, private order: OrderService) {
+    order.consumidorId$.subscribe((newId: number) => {
+      this.consumidor.id = newId;
+      if (newId == 0 || newId == null) {
+        this.consumidor = new ConsumidorModel();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.createForm();
+    this.order.getConsumidor(this.consumidor.id);
   }
   createForm() {
     this.form = this.fb.group({
@@ -50,9 +59,10 @@ export class ClientesComponent implements OnInit {
     this.consumidorService.findOne(this.consumidor.cedula).subscribe(res => {
       console.log(res['consumidor']);
       this.consumidor = res['consumidor'];
+      this.order.getConsumidor(this.consumidor.id);
       Swal.close();
     }, (err) => {
-      this.consumidor=new ConsumidorModel;
+      this.consumidor = new ConsumidorModel;
       Swal.close();
       Swal.fire({
         icon: 'error',

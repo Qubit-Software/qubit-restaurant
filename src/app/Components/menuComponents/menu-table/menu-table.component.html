@@ -11,17 +11,25 @@
                             <input id="search" type="text" class="form-control " [(ngModel)]="searchText">
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <img class="settingsImg" src="../../../assets/images/iconos/settings.png" alt="" width="35">
+                    <div class="col-md-3" *ngIf="modal==false">
+                        <img class="settingsImg" src="../../../assets/images/iconos/settings.png" alt="" width="35"
+                            style="cursor: pointer;" (click)="settings()">
                     </div>
                 </div>
                 <div class="row categoryTable">
                     <div class="col categoryGrid" *ngFor="let categoria of categoriasData ; let index = index">
-                        <div class="categoryCard">
-                            <img src="{{categoria.imagen}}" alt="" >
-                            <h4 class="poppinsLight">{{categoria.nombre}}</h4>
-                        </div>
+                        <a [routerLink]="['../menuProduct']" [state]="{'category':categoria.id, 'modal':modal}">
+                            <div class="categoryCard">
+                                <div class="imgContainer">
+                                    <img class="imgCategory" src="{{categoria.imagen}}" alt="">
+                                </div>
+                                <h4 class="poppinsLight categoryName">{{categoria.nombre}}</h4>
+                            </div>
+                        </a>
                     </div>
+                </div>
+                <div class="textViewModal" *ngIf="modal==true">
+                    <a (click)="openModal()"> Ver orden</a>
                 </div>
             </div>
         </div>

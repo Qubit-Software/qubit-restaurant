@@ -19,13 +19,15 @@
     background-color: #ADB7F0;
     border: 1px solid #ADB7F0;
     border-radius: 20px;
-    height: 167px;
+    height: 140px;
 }
 .categoryCard img{
-    width: 100px;
+    width: 75px;
+    height: auto;
+    margin: auto;
 }
 .categoryCard h4{
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 900;
     width: 79%;
     position: absolute;
@@ -35,4 +37,23 @@
     flex: 0 0 20%;
     max-width: 20%;
     margin-bottom: 1rem;
+}
+.imgContainer{
+    display: flex;
+    height: 80%;
+    vertical-align: middle;
+    justify-content: center;
+}
+.textViewModal{
+    position: absolute;
+    right: 2rem;
+    bottom: 1rem;
+}
+.textViewModal a{
+    cursor: pointer;
+    text-decoration: underline;
+    color: #343E7D;
+}
+.textViewModal a:hover{
+    color: #181c3a;
 }

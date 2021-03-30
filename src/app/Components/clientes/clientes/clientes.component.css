@@ -62,7 +62,7 @@ input::-webkit-inner-spin-button {
   cursor: pointer;
   color: #343E7D;
   min-width: 50px;
-  right: 1vh;
+  right: 0vh;
 }
 
 /******************** Modal Styles ***************************/

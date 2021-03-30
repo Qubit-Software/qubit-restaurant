@@ -8,6 +8,9 @@ import { ReportComponent } from './Pages/report/report.component';
 import { InventoryComponent } from './Pages/inventory/inventory.component';
 import { MainComponent } from './Pages/main/main.component';
 import { MenuComponent } from './Pages/menu/menu.component';
+import { MenuTableComponent } from './Components/menuComponents/menu-table/menu-table.component';
+import { MenuProductsComponent } from './Components/menuComponents/menu-products/menu-products.component';
+import { CreateMenuComponent } from './Components/menuComponents/create-menu/create-menu.component';
 
 const routes: Routes = [
   { path: '', component: LogginComponent },
@@ -17,12 +20,23 @@ const routes: Routes = [
       { path: 'clients', component: ClientsComponent },
       { path: 'report', component: ReportComponent },
       { path: 'inventario', component: InventoryComponent },
-      { path: 'menu', component: MenuComponent },
+      {
+        path: 'menu', component: MenuComponent, children: [
+          { path: 'menuTable', component: MenuTableComponent },
+          { path: 'menuProduct', component: MenuProductsComponent },
+          { path: 'settings', component: CreateMenuComponent },
+        ]
+      },
     ]
   },
   {
     path: 'main', component: MainComponent, children: [
-      { path: 'facturacion', component: FacturacionComponent },
+      {
+        path: 'facturacion', component: FacturacionComponent, children: [
+          { path: 'menuTable', component: MenuTableComponent },
+          { path: 'menuProduct', component: MenuProductsComponent }
+        ]
+      },
     ]
   }
 ];

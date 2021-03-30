@@ -1,0 +1,38 @@
+<aside class="sidebarOrder">
+    <header>
+        <div id="userDiv" class="text-center">
+            <p class="d-inline poppinsMedium mr-3">Aquamonte S.A.S</p>
+            <img id="profilePic" class=" d-inline ml-2" src="../../../../assets/images/userIcons/Screenshot_1.png"
+                height="50" width="50">
+        </div>
+    </header>
+    <nav class="sidebarOrder-nav">
+        <ul>
+            <li class="orderSingle" *ngFor="let orderSingle of orderData; let index=index">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button class="btn-floating" (click)="sumCant(index,false)">
+                            <fa-icon [icon]="faMinus"></fa-icon>
+                        </button>
+                        <p class="poppinsLight cant">{{orderSingle.cantidad}}</p>
+                        <button class="btn-floating" (click)="sumCant(index,true)">
+                            <fa-icon [icon]="faPlus"></fa-icon>
+                        </button>
+                    </div>
+                    <div class="col-md-6" style="padding-left: 0px;">
+                        <h4 class="poppinsLight nameProduct">{{orderSingle.descripcion}}</h4>
+                    </div>
+                    <div class="col-md-3 text-right">
+                        <button class="btn-floating" (click)="deleteOrder(index)">
+                            <fa-icon [icon]="faTimes"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <footer>
+        <button type="submit" class="btn mt-3 Cancelar" (click)="cancelOrder()">Cancelar</button>
+        <button type="submit" class="btn mt-3 Pagar" (click)="acceptOrder()">Aceptar</button>
+    </footer>
+</aside>

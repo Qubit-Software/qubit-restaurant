@@ -1,0 +1,92 @@
+.card{
+    height: 80vh;
+}
+.dropdown{
+    margin-bottom: 1rem;
+}
+.dropdown-menu{
+    padding-left: 1rem;
+    width: 25%;
+}
+.dropdown .btn{
+  background-color: #ADB7F0;
+  border-color: #ADB7F0;
+  color: #343E7D;
+  padding: 3px;
+  padding-left: 10px;
+  font-size: 18px;
+  width: 28%;
+  text-align: left;
+}
+.dropdown .btn img{
+    margin-right: 0.5rem;
+}
+.dropdown-toggle::after {
+  float: right;
+  margin-top: .655em;
+  margin-right: .255em;
+}
+.dropdown .btn-primary.focus, .btn-primary:focus {
+  color: #343E7D;
+  background-color: #ADB7F0;
+  border-color: #ADB7F0;
+  
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, 
+.btn-primary:not(:disabled):not(.disabled):active:focus, 
+.show>.btn-primary.dropdown-toggle:focus {
+  outline: none;
+  box-shadow: none;
+}
+.inputLabel{
+    font-size: 20px;
+}
+.inputSettings{
+   background-color: #ADB7F0;
+   border-color: #ADB7F0;
+   border-radius: 6px;
+   color: #343E7D;
+   font-size: 20px;
+   font-family: Poppins-Light;
+   padding-left: 1rem;
+   border: none;
+   width: 60%;
+}
+.inputSettings:focus{
+    outline: none;
+}
+
+.Pagar {
+    font-size: 18px;
+    padding: 2px 10px 5px;
+    width: 14vh;
+    background-color: #343E7D;
+    border-radius: 6px;
+    color: white;
+    float: right;
+}
+  
+.Pagar:hover {
+    background-color: white;
+    color: #282f5a;
+    border: 1px solid #282f5a;
+}
+.Cancelar {
+    font-size: 18px;
+    padding: 2px 10px 5px;
+    width: 14vh;
+    background-color: #9299B9;
+    border-radius: 6px;
+    color: white;
+    float: left;
+}
+.Cancelar:hover {
+    background-color: white;
+    color: #282f5a;
+    border: 1px solid #282f5a;
+}
+.containerButtoms{
+    width: 25%;
+    float: right;
+    margin-right: 4rem;
+}

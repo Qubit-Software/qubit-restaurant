@@ -1,0 +1,41 @@
+.categoryProductImg{
+    width: 70px;
+}
+.card{
+    padding-top: 0.2rem;
+}
+.productCard{
+    padding: 0.3rem;
+    text-align: center;
+    background-color: #ADB7F0;
+    border: 1px solid #ADB7F0;
+    border-radius: 12px;
+    height: 70px;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+}
+#productTable{
+    margin-top: 0.5rem;
+    height: 66vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.categoryGrid{
+    flex: 0 0 20%;
+    max-width: 20%;
+    margin-bottom: 1rem;
+}
+.productCard h4{
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+.iconLeft{
+    display: flex;
+    align-items: center;
+}
+.chevronLeft{
+    color: #4D5DB7;
+    font-size: 40px;
+    cursor: pointer;
+}

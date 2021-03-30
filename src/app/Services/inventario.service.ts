@@ -24,7 +24,6 @@ export class InventarioService {
     const authData = {
       ...inventario,
     };
-    console.log(authData);
     return this.http.post(
       `${this.url}/new`, authData).pipe(
         map(resp => {

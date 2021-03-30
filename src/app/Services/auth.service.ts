@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { UserModel } from '../Models/User';
 import { map } from 'rxjs/operators';
+import { SucursalService } from './sucursal.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   userToken: string;
   expiresAt: string;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private sucursal: SucursalService) {
     this.readToken();
   }
   login(usuario: UserModel) {
@@ -23,6 +24,8 @@ export class AuthService {
       `${this.url}/login`, authData).pipe(
         map(resp => {
           // tslint:disable-next-line: no-string-literal
+          localStorage.setItem('sucursalId', resp['usuario']['sucursaleId']);
+          this.sucursal.getSucursalInfo().subscribe(res => {});
           this.saveToken(resp['token'], 'date');
           return resp;
         })

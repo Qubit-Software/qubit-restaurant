@@ -7,7 +7,9 @@
             data-toggle="dropdown">{{mesas[0]}}
             <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li><a (click)="change(1)" style="cursor: pointer;">{{mesas[1]}}</a></li>
+            <li *ngFor="let mesa of mesas ; let i=index">
+              <a (click)="change(i)" style="cursor: pointer;" *ngIf="i!=0">{{mesas[i]}}</a>
+            </li>
           </ul>
         </div>
         <table>
@@ -22,15 +24,21 @@
             <td>{{orden.id}}</td>
             <td>{{orden.descripcion}}</td>
             <td>{{orden.cantidad}}</td>
-            <td>{{orden.precio}}</td>
-            <td class="d-flex justify-content-around qubitIcons" *ngIf="index==0">
-              <button (click)='CreateOrden(index)' class="btn-plus">
+            <td>{{orden.precio | currency : '$': 'symbol':'1.0-0'}}</td>
+            <td class="d-flex justify-content-around qubitIcons">
+              <img class="editIcons" src="../../../../assets/images/iconos/delete.svg" (click)="deleteConsumidor(index)"
+                height="15px" alt="" style="cursor: pointer;">
+            </td>
+          </tr>
+          <tr class="poppinsLight">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="d-flex justify-content-around qubitIcons">
+              <button [routerLink]="['./menuTable']" [state]="{'modal':true}" (click)='CreateOrden()' class="btn-plus">
                 <fa-icon [icon]="faPlus"></fa-icon>
               </button>
-            </td>
-            <td class="d-flex justify-content-around qubitIcons" *ngIf="index!=0">
-              <img class="editIcons" src="../../../../assets/images/iconos/delete.svg" (click)="deleteConsumidor(index)"
-                height="15px" alt="">
             </td>
           </tr>
         </table>
@@ -52,12 +60,14 @@
               <tbody class="tableCambio">
                 <tr id="trTotalVenta">
                   <td>Recibe:</td>
-                  <td>$91.820</td>
+                  <td><input type="text" class="recibeInput" [(ngModel)]="recibeInput"
+                      (ngModelChange)="calculaCambio()">
+                  </td>
                 </tr>
                 <tr class="rowSeparate"></tr>
                 <tr id="trTotalVenta">
                   <td>Cambio:</td>
-                  <td>$91.820</td>
+                  <td>{{cambioCalcule | currency : '$': 'symbol':'1.0-0'}}</td>
                 </tr>
               </tbody>
             </table>
@@ -69,19 +79,20 @@
           <tbody class="tableBottom">
             <tr>
               <td>Total venta:</td>
-              <td>$10.000</td>
+              <td>{{subtotal | currency : '$': 'symbol':'1.0-0'}}</td>
             </tr>
             <tr>
               <td>Base liquidación:</td>
-              <td>$81.820</td>
+              <td>{{baseLiquidacion | currency : '$': 'symbol':'1.0-0'}}</td>
             </tr>
             <tr>
               <td>Impo consumo:</td>
-              <td>$81.820</td>
+              <td>{{impoConsumo | currency : '$': 'symbol':'1.0-0'}}</td>
             </tr>
-            <tr>
+            <input type="checkbox" class="serviceCheck" (change)="propinaChange($event)">
+            <tr [ngClass]="{ 'underline': !propinaBool }">
               <td>Servicio voluntario:</td>
-              <td>$10.820</td>
+              <td class="tdRecibeInput"><input type="text" class="recibeInput" [(ngModel)]="propina" (ngModelChange)="calculaCambio()"></td>
             </tr>
           </tbody>
         </table>
@@ -89,15 +100,35 @@
           <tbody class="tableBottom">
             <tr class="ContainerTableFactura">
               <td>Valor Total:</td>
-              <td>$71.000</td>
+              <td>{{total | currency : '$': 'symbol':'1.0-0'}}</td>
             </tr>
           </tbody>
         </table>
         <div class="containerButtoms">
-          <button type="submit" class="btn mt-3 Cancelar">Cancelar</button>
-          <button type="submit" class="btn mt-3 Pagar">Pagar</button>
+          <button type="submit" class="btn mt-3 Cancelar" (click)="cancelOrder()">Cancelar</button>
+          <button type="submit" class="btn mt-3 Pagar" (click)="pagarOrden()">Pagar</button>
         </div>
       </div>
     </div>
   </div>
+</div>
+<div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true"
+  role="dialog">
+  <div id="modalDialog" class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close mr-2" aria-label="Close" (click)='closeModal()'>
+          <span aria-hidden="true">×</span>
+        </button>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>
+
+<div id="slideOrder" class="slideOrder" [style.width]="widthModal">
+  <a href="javascript:void(0)" class="closebtn" (click)="closeModalOrder()" #close>&times;</a>
+  <app-nav-order></app-nav-order>
 </div>

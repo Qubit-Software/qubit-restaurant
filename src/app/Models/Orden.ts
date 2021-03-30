@@ -1,6 +1,7 @@
 export class OrdenModel {
     id: string;
+    id_product: number;
     descripcion: string;
-    cantidad: string;
     precio: string;
+    cantidad: number;
 }
