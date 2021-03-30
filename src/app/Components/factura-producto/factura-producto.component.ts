@@ -238,9 +238,9 @@ export class FacturaProductoComponent implements OnInit {
     Swal.showLoading();
     this.pos.getFactura(this.sucursal.empresa.id).subscribe(res => {
       let factura = res['factura'];
+      factura = factura + 1;
       const date = new Date();
       let fecha = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-      console.log(fecha);
       let products: ProductsPosModel[];
       products = new Array();
       this.dataArray.forEach(element => {
@@ -259,9 +259,10 @@ export class FacturaProductoComponent implements OnInit {
         };
         menuArray.push(menu);
       });
+      let propinaLoc = +(String(this.propina).replace("$", "").replace(".", ""));
       let recibe = +(this.recibeInput.replace("$", "").replace(".", ""));
       this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
-        this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(this.propina),
+        this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
         HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
         HelperFunctions.formatter.format(this.cambioCalcule), factura).subscribe(res => {
           this.venta.createVenta(this.sucursal.empresa.id, this.total, date, this.seleccionado, this.sucursal.sucursal.id,
