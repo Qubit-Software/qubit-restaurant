@@ -11,12 +11,13 @@ import { MenuComponent } from './Pages/menu/menu.component';
 import { MenuTableComponent } from './Components/menuComponents/menu-table/menu-table.component';
 import { MenuProductsComponent } from './Components/menuComponents/menu-products/menu-products.component';
 import { CreateMenuComponent } from './Components/menuComponents/create-menu/create-menu.component';
+import { FacturasComponent } from './Pages/facturas/facturas.component';
 
 const routes: Routes = [
   { path: '', component: LogginComponent },
   {
     path: 'home', component: HomeComponent, children: [
-      { path: 'facturacion', component: FacturacionComponent },
+      { path: 'facturas', component: FacturasComponent },
       { path: 'clients', component: ClientsComponent },
       { path: 'report', component: ReportComponent },
       { path: 'inventario', component: InventoryComponent },

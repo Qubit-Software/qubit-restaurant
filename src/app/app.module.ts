@@ -11,7 +11,7 @@ import { HomeComponent } from './Pages/home/home.component';
 import { FacturacionComponent } from './Pages/facturacion/facturacion.component';
 import { ClientesComponent } from './Components/clientes/clientes/clientes.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { FacturaProductoComponent } from './Components/factura-producto/factura-producto.component';
+import { FacturaProductoComponent } from './Components/facturas/factura-producto/factura-producto.component';
 import { ClientsComponent } from './Pages/clients/clients.component';
 import { ClientTableComponent } from './Components/clientes/client-table/client-table.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -32,6 +32,8 @@ import { MenuProductsComponent } from './Components/menuComponents/menu-products
 import { NavOrderComponent } from './Components/order/nav-order/nav-order.component';
 import { CurrencyPipe } from '@angular/common';
 import { CreateMenuComponent } from './Components/menuComponents/create-menu/create-menu.component';
+import { FacturasComponent } from './Pages/facturas/facturas.component';
+import { FacturasTableComponent } from './Components/facturas/facturas-table/facturas-table.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { CreateMenuComponent } from './Components/menuComponents/create-menu/cre
     MenuProductsComponent,
     NavOrderComponent,
     CreateMenuComponent,
+    FacturasComponent,
+    FacturasTableComponent
     ],
   imports: [
     BrowserModule,

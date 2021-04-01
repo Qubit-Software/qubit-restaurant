@@ -31,4 +31,13 @@ export class VentaService {
         })
       );
   }
+  getVentasBySucursal(idEmpresa) {
+    let id = localStorage.getItem('sucursalId')
+    return this.http.get(
+      `${this.url}/getVentas/${idEmpresa}/${id}`).pipe(
+        map(resp => {
+          return resp['venta'];
+        })
+      );
+  }
 }
