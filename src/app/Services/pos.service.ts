@@ -46,4 +46,24 @@ export class PosService {
         })
       );
   }
+  posReport(nit, tel, direccion, ciudad, report, fecha, efectivo, tarjeta, otro, total) {
+    const authData = {
+      nit,
+      tel,
+      direccion,
+      ciudad,
+      report,
+      fecha,
+      efectivo,
+      tarjeta,
+      otro,
+      total
+    };
+    return this.http.post(
+      `${this.urlPos}/report`, authData).pipe(
+        map(resp => {
+          return resp;
+        })
+      );
+  }
 }

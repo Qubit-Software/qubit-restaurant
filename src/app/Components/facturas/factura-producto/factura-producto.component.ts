@@ -90,7 +90,7 @@ export class FacturaProductoComponent implements OnInit {
   change(i: number) {
     [this.mesas[0], this.mesas[i]] = [this.mesas[i], this.mesas[0]];
     this.order.mesaId = this.mesas[0].id;
-    this.dataArray=this.order.getOrder(this.order.mesaId);
+    this.dataArray = this.order.getOrder(this.order.mesaId);
   }
 
   llenaValores() {
@@ -100,7 +100,12 @@ export class FacturaProductoComponent implements OnInit {
         this.subtotal = this.subtotal + (element.cantidad * +element.precio);
       });
       if (this.propinaBool) {
-        this.propina = this.subtotal * 0.1;
+        console.log(typeof this.propina);
+        if ((typeof this.propina) == "string") {
+          this.propina = +(String(this.propina).replace("$", "").replace(".", ""));
+        } else {
+          this.propina = this.subtotal * 0.1;
+        }
       } else {
         this.propina = 0;
       }
@@ -272,14 +277,17 @@ export class FacturaProductoComponent implements OnInit {
       });
       let propinaLoc = +(String(this.propina).replace("$", "").replace(".", ""));
       let recibe = +(this.recibeInput.replace("$", "").replace(".", ""));
+      if (this.cambioCalcule < 0) {
+        this.cambioCalcule = 0;
+      }
       this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
         this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
         HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
         HelperFunctions.formatter.format(this.cambioCalcule), factura).subscribe(res => {
           this.venta.createVenta(this.sucursal.empresa.id, this.total, date, this.seleccionado, this.sucursal.sucursal.id,
             this.consumidorId, this.mesas[0].id, menuArray).subscribe(res => {
-              this.dataArray=new Array();
-              this.order.updateOrder(this.dataArray,this.mesas[0].id)
+              this.dataArray = new Array();
+              this.order.updateOrder(this.dataArray, this.mesas[0].id)
               Swal.close();
               Swal.fire('Ticket impreso',
                 'El ticket se ha dispensado con exito',
