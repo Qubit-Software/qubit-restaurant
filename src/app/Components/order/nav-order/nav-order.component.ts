@@ -16,9 +16,9 @@ export class NavOrderComponent implements OnInit {
   faTimes = faTimes;
   orderData: OrdenModel[];
   constructor(private order: OrderService) {
-    this.orderData = this.order.getOrder();
+    this.orderData = this.order.getOrder(this.order.mesaId);
     order.openModal$.subscribe((newBool: boolean[]) => {
-      this.orderData = order.getOrder();
+      this.orderData = order.getOrder(this.order.mesaId);
     });
   }
 
@@ -34,12 +34,12 @@ export class NavOrderComponent implements OnInit {
         this.deleteOrder(index);
       }
     }
-    this.order.updateOrder(this.orderData);
+    this.order.updateOrder(this.orderData, this.order.mesaId);
   }
 
   deleteOrder(id: number) {
     this.orderData.splice(id, 1);
-    this.order.updateOrder(this.orderData);
+    this.order.updateOrder(this.orderData, this.order.mesaId);
   }
   cancelOrder() {
     Swal.fire({
@@ -50,7 +50,7 @@ export class NavOrderComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.orderData = new Array();
-        this.order.updateOrder(this.orderData);
+        this.order.updateOrder(this.orderData, this.order.mesaId);
         this.order.openModal([false, false]);
       }
     })

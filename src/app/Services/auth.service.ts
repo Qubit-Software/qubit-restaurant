@@ -25,6 +25,7 @@ export class AuthService {
         map(resp => {
           // tslint:disable-next-line: no-string-literal
           localStorage.setItem('sucursalId', resp['usuario']['sucursaleId']);
+          localStorage.setItem('ordenes', '');
           this.sucursal.getSucursalInfo().subscribe(res => {});
           this.saveToken(resp['token'], 'date');
           return resp;

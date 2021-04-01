@@ -55,7 +55,8 @@ import { CreateMenuComponent } from './Components/menuComponents/create-menu/cre
     MenuTableComponent,
     MenuProductsComponent,
     NavOrderComponent,
-    CreateMenuComponent],
+    CreateMenuComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

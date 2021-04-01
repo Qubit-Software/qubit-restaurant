@@ -21,7 +21,7 @@ export class MenuProductsComponent implements OnInit {
   currentCategory = new CategoriaModel();
   constructor(private order: OrderService, private menu: MenuService) {
     order.openModal$.subscribe((newBool: boolean[]) => {
-      this.orderData = order.getOrder();
+      this.orderData = order.getOrder(this.order.mesaId);
       this.llenaProducts();
     });
   }
@@ -44,6 +44,7 @@ export class MenuProductsComponent implements OnInit {
     });
     this.llenaProducts();
   }
+
   llenaProducts() {
     if (this.menu.menuData != null) {
       this.productsData = new Array();
@@ -58,10 +59,9 @@ export class MenuProductsComponent implements OnInit {
         this.productsData = items;
       });
     }
-
   }
   addOrder(prod: ProductModel) {
-    this.orderData = this.order.getOrder();
+    this.orderData = this.order.getOrder(this.order.mesaId);
     let order = new OrdenModel();
     order.id = `${this.currentCategory.nombre.substr(0, 3).toUpperCase()}-${prod.index}`;
     order.id_product = prod.id;
@@ -72,7 +72,7 @@ export class MenuProductsComponent implements OnInit {
       this.orderData = new Array();
     }
     this.orderData.push(order);
-    this.order.updateOrder(this.orderData);
+    this.order.updateOrder(this.orderData, this.order.mesaId);
     this.order.openModal([true, true]);
   }
   closeModal() {

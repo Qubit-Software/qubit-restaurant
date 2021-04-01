@@ -33,12 +33,16 @@ export class FacturaProductoComponent implements OnInit {
   recibeInput: string = "0";
   cambioCalcule: number = 0;
   consumidorId;
+
   constructor(private router: Router, private route: ActivatedRoute, private order: OrderService, private sucursal: SucursalService,
     private pos: PosService, private venta: VentaService) {
     order.openModal$.subscribe((newBool: boolean[]) => {
       this.orderModalOpen = newBool[0];
       this.openModalOrder();
-      this.dataArray = order.getOrder();
+      this.dataArray = order.getOrder(this.mesas[0].id);
+      if (this.dataArray == null) {
+        this.dataArray = new Array();
+      }
       this.llenaValores();
       if (newBool[1] == false) {
         this.closeModal();
@@ -51,7 +55,7 @@ export class FacturaProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.mesas.push(new MesaModel());
-    this.dataArray = this.order.getOrder();
+    this.dataArray = this.order.getOrder(this.mesas[0].id);
     $(".recibeInput").on({
       "focus": function (event) {
         $(event.target).select();
@@ -69,21 +73,26 @@ export class FacturaProductoComponent implements OnInit {
     this.mesas = new Array();
     if (this.sucursal.mesas != null) {
       this.mesas = this.sucursal.mesas;
+      this.order.mesaId = this.mesas[0].id;
     } else {
       this.sucursal.getSucursalInfo().subscribe(res => {
         this.mesas = new Array();
         this.mesas = this.sucursal.mesas;
+        this.order.mesaId = this.mesas[0].id;
       });
     }
-
   }
+
   CreateOrden() {
     this.openModal();
   }
 
   change(i: number) {
     [this.mesas[0], this.mesas[i]] = [this.mesas[i], this.mesas[0]];
+    this.order.mesaId = this.mesas[0].id;
+    this.dataArray=this.order.getOrder(this.order.mesaId);
   }
+
   llenaValores() {
     if (this.dataArray.length > 0 || this.dataArray != null) {
       this.subtotal = 0;
@@ -103,6 +112,7 @@ export class FacturaProductoComponent implements OnInit {
       this.calculaCambio();
     }
   }
+
   openModalOrder() {
     if (this.orderModalOpen != null) {
       if (this.orderModalOpen) {
@@ -148,6 +158,7 @@ export class FacturaProductoComponent implements OnInit {
       }
     }
   }
+
   cancelOrder() {
     Swal.fire({
       title: '¿Desea cancelar la orden?',
@@ -157,16 +168,16 @@ export class FacturaProductoComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.dataArray = new Array();
-        this.order.updateOrder(this.dataArray);
+        this.order.updateOrder(this.dataArray, this.mesas[0].id);
         this.recibeInput = '0';
         this.llenaValores();
       }
     })
-
   }
+
   deleteConsumidor(index: number) {
     this.dataArray.splice(index, 1);
-    this.order.updateOrder(this.dataArray);
+    this.order.updateOrder(this.dataArray, this.mesas[0].id);
     this.llenaValores();
   }
   closeModalOrder() {
@@ -267,6 +278,8 @@ export class FacturaProductoComponent implements OnInit {
         HelperFunctions.formatter.format(this.cambioCalcule), factura).subscribe(res => {
           this.venta.createVenta(this.sucursal.empresa.id, this.total, date, this.seleccionado, this.sucursal.sucursal.id,
             this.consumidorId, this.mesas[0].id, menuArray).subscribe(res => {
+              this.dataArray=new Array();
+              this.order.updateOrder(this.dataArray,this.mesas[0].id)
               Swal.close();
               Swal.fire('Ticket impreso',
                 'El ticket se ha dispensado con exito',

@@ -9,13 +9,13 @@ export class OrderService {
 
   openModal$: Observable<boolean[]>;
   consumidorId$: Observable<number>;
-  orderData: OrdenModel[]
+  mesaId: number;
+  orderMesas = new Map<number, OrdenModel[]>();
 
   private boolSubject: Subject<boolean[]>;
   private idConsumidor: Subject<number>;
 
   constructor() {
-    this.orderData = new Array();
     this.boolSubject = new Subject<boolean[]>();
     this.idConsumidor = new Subject<number>();
     this.openModal$ = this.boolSubject.asObservable();
@@ -27,10 +27,19 @@ export class OrderService {
   getConsumidor(value: number) {
     this.idConsumidor.next(value);
   }
-  updateOrder(orders: OrdenModel[]) {
-    this.orderData = orders;
+  updateOrder(order: OrdenModel[], idMesa) {
+    this.orderMesas.set(idMesa, order);
+    console.log(this.orderMesas);
   }
-  getOrder(): OrdenModel[] {
-    return this.orderData;
+  getOrder(idMesa) {
+    if (idMesa != null) {
+      if (this.orderMesas.get(idMesa) != null) {
+        return this.orderMesas.get(idMesa);
+      } else {
+        return new Array();
+      }
+    } else {
+      return null;
+    }
   }
 }
