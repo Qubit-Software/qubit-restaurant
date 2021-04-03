@@ -280,12 +280,14 @@ export class FacturaProductoComponent implements OnInit {
       if (this.cambioCalcule < 0) {
         this.cambioCalcule = 0;
       }
+      let totalVenta = this.total - propinaLoc;
       this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
         this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
         HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
         HelperFunctions.formatter.format(this.cambioCalcule), factura).subscribe(res => {
-          this.venta.createVenta(this.sucursal.empresa.id, this.total, date, this.seleccionado, this.sucursal.sucursal.id,
+          this.venta.createVenta(this.sucursal.empresa.id, totalVenta, date, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
             this.consumidorId, this.mesas[0].id, menuArray).subscribe(res => {
+              this.order.UpdateConsumidor(null);
               this.dataArray = new Array();
               this.order.updateOrder(this.dataArray, this.mesas[0].id)
               Swal.close();

@@ -29,7 +29,7 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    this.order.getConsumidor(this.consumidor.id);
+    this.order.UpdateConsumidor(this.consumidor.id);
   }
   createForm() {
     this.form = this.fb.group({
@@ -59,7 +59,7 @@ export class ClientesComponent implements OnInit {
     this.consumidorService.findOne(this.consumidor.cedula).subscribe(res => {
       console.log(res['consumidor']);
       this.consumidor = res['consumidor'];
-      this.order.getConsumidor(this.consumidor.id);
+      this.order.UpdateConsumidor(this.consumidor.id);
       Swal.close();
     }, (err) => {
       this.consumidor = new ConsumidorModel;

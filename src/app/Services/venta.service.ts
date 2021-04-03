@@ -13,12 +13,13 @@ export class VentaService {
 
   constructor(private http: HttpClient) { }
 
-  createVenta(idEmpresa, preciototal, fecha, tipo, sucursaleId, consumidoreId, mesaId, menu) {
+  createVenta(idEmpresa, preciototal, fecha, tipo, propina,sucursaleId, consumidoreId, mesaId, menu) {
     const authData = {
       idEmpresa,
       preciototal,
       fecha,
       tipo,
+      propina,
       sucursaleId,
       consumidoreId,
       mesaId,

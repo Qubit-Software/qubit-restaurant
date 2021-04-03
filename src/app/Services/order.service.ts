@@ -24,7 +24,7 @@ export class OrderService {
   openModal(value: boolean[]) {
     this.boolSubject.next(value);
   }
-  getConsumidor(value: number) {
+  UpdateConsumidor(value: number) {
     this.idConsumidor.next(value);
   }
   updateOrder(order: OrdenModel[], idMesa) {
