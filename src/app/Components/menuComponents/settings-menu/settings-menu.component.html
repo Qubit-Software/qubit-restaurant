@@ -3,10 +3,12 @@
         <div class="col">
             <div class="card">
                 <div class="row">
-                    <div class="col-md-3">
-                        <h4 class="poppinsMedium">Registro de Menú</h4>
+                    <div class="col-md-6">
+                        <h4 class="poppinsMedium">{{descripcionSettings}}</h4>
                     </div>
-                    <div class="col-md-12">
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="dropdown">
                             <button class="btn btn-primary dropdown-toggle poppinsLight mt-2" type="button"
                                 data-toggle="dropdown">
@@ -20,22 +22,30 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="col-md-4 text-right" *ngIf="!boolSettings">
+                        <h4 class="poppinsMedium viewLabel">Visualización</h4>
+                        <img class="iconImg"
+                            [src]="producto.visible ? '../../../../assets/images/iconos/eye.png' : '../../../../assets/images/iconos/eyeClose.png'"
+                            alt="" width="25" (click)="producto.visible=!producto.visible">
+                    </div>
                 </div>
                 <div class="row" style="margin-top: 1rem;">
                     <div class="col-md-8">
                         <h4 class="poppinsMedium inputLabel">Descripción</h4>
-                        <input class="inputSettings" type="text" [(ngModel)]="descripcion">
+                        <input class="inputSettings" type="text" [(ngModel)]="producto.nombre">
                     </div>
                     <div class="col-md-4">
                         <h4 class="poppinsMedium inputLabel">Precio</h4>
-                        <input class="inputSettings recibeInput" type="text" [(ngModel)]="precio">
+                        <input class="inputSettings recibeInput" type="text" [(ngModel)]="producto.precio">
                     </div>
                 </div>
                 <div class="row" style="margin-top: 13rem;">
                     <div class="col-md-12">
                         <div class="containerButtoms">
                             <button type="submit" class="btn mt-3 Cancelar" (click)="atras()">Atras</button>
-                            <button type="submit" class="btn mt-3 Pagar" (click)="guardar()">Guardar</button>
+                            <button type="submit" class="btn mt-3 Eliminar" *ngIf="!boolSettings" (click)="eliminar()">Eliminar</button>
+                            <button type="submit" class="btn mt-3 Pagar"
+                                (click)="(boolSettings) ? guardar() : actualizar()">Guardar</button>
                         </div>
                     </div>
                 </div>

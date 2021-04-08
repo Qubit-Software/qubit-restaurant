@@ -14,18 +14,19 @@ export class SucursalService {
   private url = `${environment.apiUrl}/sucursal`;
   empresa: EmpresaModel;
   sucursal: SucursalModel;
-  mesas:MesaModel[];
+  mesas: MesaModel[];
 
   constructor(private http: HttpClient) { }
 
-  getSucursalInfo(){
-    let id=localStorage.getItem('sucursalId')
+  getSucursalInfo() {
+    let id = localStorage.getItem('sucursalId')
     return this.http.get(
       `${this.url}/getOne/${id}`).pipe(
         map(resp => {
-          this.sucursal=resp['sucursal'];
-          this.empresa=resp['sucursal']['empresa'];
-          this.mesas=resp['sucursal']['mesas'];
+          localStorage.setItem('empresaId', resp['sucursal']['empresa']['id']);
+          this.sucursal = resp['sucursal'];
+          this.empresa = resp['sucursal']['empresa'];
+          this.mesas = resp['sucursal']['mesas'];
         })
       );
   }

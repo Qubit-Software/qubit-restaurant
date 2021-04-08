@@ -31,9 +31,10 @@ import { MenuTableComponent } from './Components/menuComponents/menu-table/menu-
 import { MenuProductsComponent } from './Components/menuComponents/menu-products/menu-products.component';
 import { NavOrderComponent } from './Components/order/nav-order/nav-order.component';
 import { CurrencyPipe } from '@angular/common';
-import { CreateMenuComponent } from './Components/menuComponents/create-menu/create-menu.component';
+import { SettingsMenuComponent } from './Components/menuComponents/settings-menu/settings-menu.component';
 import { FacturasComponent } from './Pages/facturas/facturas.component';
 import { FacturasTableComponent } from './Components/facturas/facturas-table/facturas-table.component';
+import { SettingsComponent } from './Pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -57,10 +58,11 @@ import { FacturasTableComponent } from './Components/facturas/facturas-table/fac
     MenuTableComponent,
     MenuProductsComponent,
     NavOrderComponent,
-    CreateMenuComponent,
+    SettingsMenuComponent,
     FacturasComponent,
-    FacturasTableComponent
-    ],
+    FacturasTableComponent,
+    SettingsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -42,6 +42,6 @@ export class MenuTableComponent implements OnInit {
   }
 
   settings() {
-    this.router.navigate(['../settings'], { relativeTo: this.route });
+    this.router.navigate(['../settings','new'], { relativeTo: this.route });
   }
 }

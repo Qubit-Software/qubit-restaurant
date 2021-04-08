@@ -233,9 +233,6 @@ display: none;
 :host ::ng-deep .modal-body .card .categoryCard img{
   width: 95px;
 }
-:host::ng-deep .productCard{
-  cursor: pointer;
-}
 .serviceCheck{
   position: absolute;
   left: 0px;

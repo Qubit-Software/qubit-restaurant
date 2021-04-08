@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { from } from 'rxjs';
 import { VentaService } from 'src/app/Services/venta.service';
 import { MesaModel } from 'src/app/Models/Mesas';
+import { ConsumidorModel } from 'src/app/Models/Consumidor';
 
 @Component({
   selector: 'app-factura-producto',
@@ -32,7 +33,7 @@ export class FacturaProductoComponent implements OnInit {
   propinaBool: boolean = false;
   recibeInput: string = "0";
   cambioCalcule: number = 0;
-  consumidorId;
+  consumidor: ConsumidorModel;
 
   constructor(private router: Router, private route: ActivatedRoute, private order: OrderService, private sucursal: SucursalService,
     private pos: PosService, private venta: VentaService) {
@@ -48,8 +49,8 @@ export class FacturaProductoComponent implements OnInit {
         this.closeModal();
       }
     });
-    order.consumidorId$.subscribe((newId: number) => {
-      this.consumidorId = newId;
+    order.consumidor$.subscribe((newConsumidor: ConsumidorModel) => {
+      this.consumidor = newConsumidor;
     });
   }
 
@@ -210,7 +211,7 @@ export class FacturaProductoComponent implements OnInit {
     this.cambioCalcule = numberRecibe - this.total;
   }
   pagarOrden() {
-    if (this.consumidorId == 0 || this.consumidorId == null) {
+    if (this.consumidor.id == null) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -284,9 +285,9 @@ export class FacturaProductoComponent implements OnInit {
       this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
         this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
         HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
-        HelperFunctions.formatter.format(this.cambioCalcule), factura).subscribe(res => {
+        HelperFunctions.formatter.format(this.cambioCalcule), factura,this.consumidor.nombre,this.mesas[0].mesa).subscribe(res => {
           this.venta.createVenta(this.sucursal.empresa.id, totalVenta, date, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
-            this.consumidorId, this.mesas[0].id, menuArray).subscribe(res => {
+            this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
               this.order.UpdateConsumidor(null);
               this.dataArray = new Array();
               this.order.updateOrder(this.dataArray, this.mesas[0].id)

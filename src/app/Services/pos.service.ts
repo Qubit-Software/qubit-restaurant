@@ -22,7 +22,8 @@ export class PosService {
         })
       );
   }
-  posVenta(nit, tel, direccion, ciudad, factura, fecha, products, subtotal, servVol, total, efectivo, cambio, idF) {
+  posVenta(nit, tel, direccion, ciudad, factura, fecha, products, subtotal, servVol, total, efectivo,
+    cambio, idF, cliente, mesa) {
     const authData = {
       nit,
       tel,
@@ -36,7 +37,9 @@ export class PosService {
       total,
       efectivo,
       cambio,
-      idF
+      idF,
+      cliente,
+      mesa
     };
     // console.log(authData);
     return this.http.post(

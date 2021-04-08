@@ -10,7 +10,7 @@ import { MainComponent } from './Pages/main/main.component';
 import { MenuComponent } from './Pages/menu/menu.component';
 import { MenuTableComponent } from './Components/menuComponents/menu-table/menu-table.component';
 import { MenuProductsComponent } from './Components/menuComponents/menu-products/menu-products.component';
-import { CreateMenuComponent } from './Components/menuComponents/create-menu/create-menu.component';
+import { SettingsMenuComponent } from './Components/menuComponents/settings-menu/settings-menu.component';
 import { FacturasComponent } from './Pages/facturas/facturas.component';
 
 const routes: Routes = [
@@ -25,7 +25,7 @@ const routes: Routes = [
         path: 'menu', component: MenuComponent, children: [
           { path: 'menuTable', component: MenuTableComponent },
           { path: 'menuProduct', component: MenuProductsComponent },
-          { path: 'settings', component: CreateMenuComponent },
+          { path: 'settings/:id', component: SettingsMenuComponent },
         ]
       },
     ]

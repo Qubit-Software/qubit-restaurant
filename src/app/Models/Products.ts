@@ -4,4 +4,5 @@ export class ProductModel {
   categoria: string;
   nombre: string;
   precio: string;
+  visible: boolean;
 }

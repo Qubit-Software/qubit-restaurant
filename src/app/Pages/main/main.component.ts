@@ -36,7 +36,6 @@ export class MainComponent implements OnInit {
       this.open = !this.open;
       this.widthModal = "250px";
     }
-    console.log(this.widthModal);
   }
 
 }

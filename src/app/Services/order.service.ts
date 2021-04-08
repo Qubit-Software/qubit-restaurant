@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { ConsumidorModel } from '../Models/Consumidor';
 import { OrdenModel } from '../Models/Orden';
 
 @Injectable({
@@ -8,28 +9,27 @@ import { OrdenModel } from '../Models/Orden';
 export class OrderService {
 
   openModal$: Observable<boolean[]>;
-  consumidorId$: Observable<number>;
+  consumidor$: Observable<ConsumidorModel>;
   mesaId: number;
   orderMesas = new Map<number, OrdenModel[]>();
 
   private boolSubject: Subject<boolean[]>;
-  private idConsumidor: Subject<number>;
+  private consumidor: Subject<ConsumidorModel>;
 
   constructor() {
     this.boolSubject = new Subject<boolean[]>();
-    this.idConsumidor = new Subject<number>();
+    this.consumidor = new Subject<ConsumidorModel>();
     this.openModal$ = this.boolSubject.asObservable();
-    this.consumidorId$ = this.idConsumidor.asObservable();
+    this.consumidor$ = this.consumidor.asObservable();
   }
   openModal(value: boolean[]) {
     this.boolSubject.next(value);
   }
-  UpdateConsumidor(value: number) {
-    this.idConsumidor.next(value);
+  UpdateConsumidor(value: ConsumidorModel) {
+    this.consumidor.next(value);
   }
   updateOrder(order: OrdenModel[], idMesa) {
     this.orderMesas.set(idMesa, order);
-    console.log(this.orderMesas);
   }
   getOrder(idMesa) {
     if (idMesa != null) {

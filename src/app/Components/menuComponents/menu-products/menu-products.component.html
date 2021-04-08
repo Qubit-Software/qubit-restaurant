@@ -18,7 +18,7 @@
                 <div id="productTable">
                     <div class="row">
                         <div class="col categoryGrid" *ngFor="let product of productsData ; let index = index">
-                            <div class="productCard" (click)="addOrder(product)">
+                            <div class="productCard" (click)="modal? addOrder(product): openUpdate(product.id)">
                                 <h4 class="poppinsLight productName">{{product.nombre}}</h4>
                             </div>
                         </div>

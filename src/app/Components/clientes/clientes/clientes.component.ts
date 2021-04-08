@@ -19,17 +19,14 @@ export class ClientesComponent implements OnInit {
   faPlus = faPlus;
   faSearch = faSearch;
   constructor(private consumidorService: ConsumidorService, private fb: FormBuilder, private order: OrderService) {
-    order.consumidorId$.subscribe((newId: number) => {
-      this.consumidor.id = newId;
-      if (newId == 0 || newId == null) {
-        this.consumidor = new ConsumidorModel();
-      }
+    order.consumidor$.subscribe((newConsumidor: ConsumidorModel) => {
+      this.consumidor = newConsumidor;
     });
   }
 
   ngOnInit(): void {
     this.createForm();
-    this.order.UpdateConsumidor(this.consumidor.id);
+    this.order.UpdateConsumidor(this.consumidor);
   }
   createForm() {
     this.form = this.fb.group({
@@ -59,7 +56,7 @@ export class ClientesComponent implements OnInit {
     this.consumidorService.findOne(this.consumidor.cedula).subscribe(res => {
       console.log(res['consumidor']);
       this.consumidor = res['consumidor'];
-      this.order.UpdateConsumidor(this.consumidor.id);
+      this.order.UpdateConsumidor(this.consumidor);
       Swal.close();
     }, (err) => {
       this.consumidor = new ConsumidorModel;

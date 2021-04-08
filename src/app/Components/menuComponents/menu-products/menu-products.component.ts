@@ -6,6 +6,7 @@ import { OrdenModel } from 'src/app/Models/Orden';
 import { MenuService } from 'src/app/Services/menu.service';
 import * as config from '../../../../config/config.js';
 import { CategoriaModel } from 'src/app/Models/Categorias.js';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu-products',
@@ -15,15 +16,19 @@ import { CategoriaModel } from 'src/app/Models/Categorias.js';
 export class MenuProductsComponent implements OnInit {
 
   faChevronLeft = faChevronLeft;
+  allProductsData: ProductModel[];
   productsData: ProductModel[];
   orderData: OrdenModel[];
   modal: boolean;
   currentCategory = new CategoriaModel();
-  constructor(private order: OrderService, private menu: MenuService) {
+  constructor(private order: OrderService, private menu: MenuService, private router: Router, private route: ActivatedRoute) {
     order.openModal$.subscribe((newBool: boolean[]) => {
       this.orderData = order.getOrder(this.order.mesaId);
       this.llenaProducts();
     });
+    menu.menuData$.subscribe((newMenu: ProductModel[]) => {
+      this.allProductsData = newMenu;
+    })
   }
 
   ngOnInit(): void {
@@ -44,19 +49,30 @@ export class MenuProductsComponent implements OnInit {
     });
     this.llenaProducts();
   }
-
   llenaProducts() {
-    if (this.menu.menuData != null) {
+    if (this.allProductsData != null) {
       this.productsData = new Array();
-      let categoryId = history.state.category;
-      const items = this.menu.menuData.filter(item => item.categoria == categoryId);
-      this.productsData = items;
+      if (this.modal == true) {
+        let categoryId = history.state.category;
+        const items = this.allProductsData.filter(item => item.categoria == categoryId && item.visible == true);
+        this.productsData = items;
+      } else {
+        let categoryId = history.state.category;
+        const items = this.allProductsData.filter(item => item.categoria == categoryId);
+        this.productsData = items;
+      }
     } else {
       this.menu.getAllMenu().subscribe(res => {
         this.productsData = new Array();
-        let categoryId = history.state.category;
-        const items = this.menu.menuData.filter(item => item.categoria == categoryId);
-        this.productsData = items;
+        if (this.modal == true) {
+          let categoryId = history.state.category;
+          const items = this.allProductsData.filter(item => item.categoria == categoryId && item.visible == true);
+          this.productsData = items;
+        } else {
+          let categoryId = history.state.category;
+          const items = this.allProductsData.filter(item => item.categoria == categoryId);
+          this.productsData = items;
+        }
       });
     }
   }
@@ -77,5 +93,8 @@ export class MenuProductsComponent implements OnInit {
   }
   closeModal() {
     this.order.openModal([false, true]);
+  }
+  openUpdate(id) {
+    this.router.navigate(['../settings', id], { relativeTo: this.route });
   }
 }
