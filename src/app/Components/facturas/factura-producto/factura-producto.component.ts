@@ -7,7 +7,6 @@ import { PosService } from 'src/app/Services/pos.service';
 import { SucursalService } from 'src/app/Services/sucursal.service';
 import { HelperFunctions } from 'src/app/helpers/functions';
 import Swal from 'sweetalert2';
-import { from } from 'rxjs';
 import { VentaService } from 'src/app/Services/venta.service';
 import { MesaModel } from 'src/app/Models/Mesas';
 import { ConsumidorModel } from 'src/app/Models/Consumidor';
@@ -288,7 +287,7 @@ export class FacturaProductoComponent implements OnInit {
         HelperFunctions.formatter.format(this.cambioCalcule), factura,this.consumidor.nombre,this.mesas[0].mesa).subscribe(res => {
           this.venta.createVenta(this.sucursal.empresa.id, totalVenta, date, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
             this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
-              this.order.UpdateConsumidor(null);
+              this.order.UpdateConsumidor(new ConsumidorModel());
               this.dataArray = new Array();
               this.order.updateOrder(this.dataArray, this.mesas[0].id)
               Swal.close();
