@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FilterPipe } from 'src/app/filter.pipe';
 import { ConsumidorService } from 'src/app/Services/consumidor.service';
+import { SucursalService } from 'src/app/Services/sucursal.service';
 import Swal from 'sweetalert2';
 import { ConsumidorModel } from '../../../Models/Consumidor';
+import { ValidatorsFunctions } from 'src/app/helpers/validators';
 
 @Component({
   selector: 'app-client-table',
@@ -16,16 +18,20 @@ export class ClientTableComponent implements OnInit {
   //*************************** testing only ***********************************
 
   consumidores: ConsumidorModel[];
+  idEmpresa: string;
   searchText: string;
   form: FormGroup;
   page: number = 1;
   edit: number = -1;
   editIcon = '../../../../assets/images/iconos/edit-button.png';
   checkIcon = '../../../../assets/images/iconos/checked.png';
-  constructor(private consumidorService: ConsumidorService, private fb: FormBuilder) { }
+  constructor(private consumidorService: ConsumidorService, private fb: FormBuilder, private sucursal: SucursalService) { }
 
   ngOnInit(): void {
-    this.getConsumidores();
+    if (ValidatorsFunctions.validateIdEmpresa()) {
+      this.idEmpresa = localStorage.getItem('empresaId');
+      this.getConsumidores();
+    }
   }
 
   getConsumidores() {
@@ -35,7 +41,7 @@ export class ClientTableComponent implements OnInit {
       text: 'Espere por favor'
     });
     Swal.showLoading();
-    this.consumidorService.getAll(1).subscribe(res => {
+    this.consumidorService.getAll(this.idEmpresa).subscribe(res => {
       this.consumidores = res['consumidores'];
       Swal.close();
     }, (err) => {

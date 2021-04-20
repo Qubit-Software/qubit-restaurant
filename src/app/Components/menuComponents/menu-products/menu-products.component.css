@@ -41,4 +41,121 @@
 }
 .productCard{
     cursor: pointer;
+}
+.containerCheck {
+    position: absolute;
+    top: 0.5rem;
+    right: 2.5rem;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
+  
+/* Hide the browser's default checkbox */
+.containerCheck input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .containerCheck:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .containerCheck input:checked ~ .checkmark {
+    background-color: #4D5DB7;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark::after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  .guardarSeg{
+    width: auto;
+    margin-left: 1rem;
+    margin-top: 5px !important;
+    padding: 3px 30px;
+  }
+  /* Show the checkmark when checked */
+  .containerCheck input:checked ~ .checkmark::after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+    .containerCheck .checkmark::after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  #todosCheck{
+    left: -1.3rem;
+    top: 0.3rem;
+  }
+
+  .dropdown{
+    display: inline-block;
+}
+.dropdown button{
+  width: 7rem;
+  text-align: left;
+  border: 0;
+  border-bottom: 1px solid#DAE0F6;
+  outline: 0;
+  font-size: 0.9rem;
+  color: #4D5DB7;
+  padding: 0px 10px 0px;
+  background: transparent;
+  transition: border-color 0.2s;
+  margin-bottom: 6%;
+}
+.dropdown .btn-primary:focus{
+  box-shadow: none
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active {
+  color: #4D5DB7;
+  background: transparent;
+  border: 0;
+  border-color:transparent;
+}
+.dropdown-menu {
+min-width: 7rem;
+}
+
+.dropdown-menu li {
+padding: 0.4rem;
+}
+
+.dropdown-menu li a {
+color: #343E7D;
+text-decoration: none;
+}
+.dropdown-toggle::after {
+float: right;
+margin-top: .655em;
+margin-right: .255em;
+}

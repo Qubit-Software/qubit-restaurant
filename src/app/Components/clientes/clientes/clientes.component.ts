@@ -5,6 +5,7 @@ import { ConsumidorService } from '../../../Services/consumidor.service';
 import { ConsumidorModel } from '../../../Models/Consumidor';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrderService } from 'src/app/Services/order.service';
+import { ValidatorsFunctions } from 'src/app/helpers/validators';
 
 @Component({
   selector: 'app-clientes',
@@ -18,6 +19,7 @@ export class ClientesComponent implements OnInit {
   modal = document.getElementById('exampleModal');
   faPlus = faPlus;
   faSearch = faSearch;
+  idEmpresa: string;
   constructor(private consumidorService: ConsumidorService, private fb: FormBuilder, private order: OrderService) {
     order.consumidor$.subscribe((newConsumidor: ConsumidorModel) => {
       this.consumidor = newConsumidor;
@@ -25,6 +27,9 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (ValidatorsFunctions.validateIdEmpresa()) {
+      this.idEmpresa = localStorage.getItem('empresaId');
+    }
     this.createForm();
     this.order.UpdateConsumidor(this.consumidor);
   }
@@ -53,7 +58,7 @@ export class ClientesComponent implements OnInit {
       text: 'Espere por favor'
     });
     Swal.showLoading();
-    this.consumidorService.findOne(this.consumidor.cedula).subscribe(res => {
+    this.consumidorService.findOne(this.consumidor.cedula,this.idEmpresa).subscribe(res => {
       console.log(res['consumidor']);
       this.consumidor = res['consumidor'];
       this.order.UpdateConsumidor(this.consumidor);

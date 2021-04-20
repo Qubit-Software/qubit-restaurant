@@ -1,0 +1,152 @@
+h6 {
+    display: inline-block;
+    margin-right: 1rem;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  
+  .form__field {
+    border: 0;
+    border-bottom: 1px solid#DAE0F6;
+    outline: 0;
+    font-size: 0.9rem;
+    color: #4D5DB7;
+    padding: 0px 10px 0px;
+    background: transparent;
+    transition: border-color 0.2s;
+    margin-bottom: 6%;
+  }
+  .form__field:focus{
+    transition: 0.09s;
+    border-bottom: 3px solid#343E7D;
+    border-width: 3px;
+    border-image-slice: 1;
+    box-shadow: none;
+  }
+  .dropdown{
+      display: inline-block;
+  }
+  .dropdown button{
+    width: 14rem;
+    text-align: left;
+    border: 0;
+    border-bottom: 1px solid#DAE0F6;
+    outline: 0;
+    font-size: 0.9rem;
+    color: #4D5DB7;
+    padding: 0px 10px 0px;
+    background: transparent;
+    transition: border-color 0.2s;
+    margin-bottom: 6%;
+  }
+  .dropdown .btn-primary:focus{
+    box-shadow: none
+  }
+  .btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active {
+    color: #4D5DB7;
+    background: transparent;
+    border: 0;
+    border-color:transparent;
+}
+.dropdown-menu {
+  min-width: 14rem;
+}
+
+.dropdown-menu li {
+  padding: 0.4rem;
+}
+
+.dropdown-menu li a {
+  color: #343E7D;
+  text-decoration: none;
+}
+.dropdown-toggle::after {
+  float: right;
+  margin-top: .655em;
+  margin-right: .255em;
+}
+.btnTest{
+    text-align: center;
+}
+
+.Pagar {
+    font-size: 13px;
+    padding: 2px 10px 5px;
+    width: 12vh;
+    background-color: #343E7D;
+    border-radius: 6px;
+    color: white;
+    float: right;
+  }
+  
+  .Pagar:hover {
+    background-color: white;
+    color: #282f5a;
+    border: 1px solid #282f5a;
+  }
+  .Cancelar {
+    font-size: 13px;
+    padding: 2px 10px 5px;
+    width: 12vh;
+    background-color: #9299B9;
+    border-radius: 6px;
+    color: white;
+    float: left;
+  }
+.Cancelar:hover {
+    background-color: white;
+    color: #282f5a;
+    border: 1px solid #282f5a;
+  }
+  .Eliminar {
+    font-size: 13px;
+    padding: 2px 10px 5px;
+    width: 12vh;
+    background-color: #b92c2c;
+    border-radius: 6px;
+    color: white;
+    float: right;
+}
+  
+.Eliminar:hover {
+    background-color: white;
+    color: #282f5a;
+    border: 1px solid #282f5a;
+}
+
+
+/******************** Modal Styles ***************************/
+
+.btn-primary{
+    border-color: #21274d;
+  }
+  .modal-header {
+    background: #4D5DB7;
+    color: white;
+    padding: 0.2rem;
+  }
+  
+  .close {
+    color: white;
+    text-shadow: none;
+  }
+  
+  .modal-footer {
+    justify-content: center;
+    padding: 0rem;
+    padding-bottom: 0.8rem;
+    border: none;
+  }
+  .modal-footer .btn{
+    width: 20%;
+    font-size: 1rem;
+    text-align: center;
+    padding: 1px 3px;
+    margin: 0px 2rem;
+}
+  .modal-dialog{
+    max-width: 60vw;
+  }
+  
+  /******************** Modal Styles ends***************************/
+  

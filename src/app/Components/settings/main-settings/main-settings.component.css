@@ -1,0 +1,36 @@
+.tableSettings{
+    padding: 1rem 5rem;
+}
+.listSettings a{
+    color: #6F87EE;
+    text-decoration: none;
+    cursor: pointer;
+}
+.listSettings a:hover{
+    color: #5061ac;
+}
+@media (min-width: 576px){
+    .modal-dialog {
+      width: 95%;
+      max-width: 95%;
+    }
+  }
+  .modal-header{
+    padding: 5px;
+    border-bottom: hidden;
+  }
+  .modal-body{
+    padding: 0px;
+  }
+  .modal-content{
+    background-color:transparent;
+    border: none;
+  }
+  #menuModal .modal-body .close{
+    position: absolute;
+    right: 1rem;
+    z-index: 999;
+    padding: 1.5rem;
+  }
+
+  

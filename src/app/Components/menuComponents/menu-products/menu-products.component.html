@@ -4,7 +4,8 @@
             <div class="card">
                 <div class="row">
                     <div class="col-md-3 iconLeft">
-                        <a [routerLink]="['../menuTable']" [state]="{'modal':modal}" (click)="closeModal()">
+                        <a [routerLink]="['../menuTable']" [state]="{'modal':modal,'modal2':modal2}"
+                            (click)="closeModal()">
                             <fa-icon class="chevronLeft" [icon]="faChevronLeft"></fa-icon>
                         </a>
                     </div>
@@ -13,18 +14,52 @@
                         <h4 class="poppinsLight">{{currentCategory.nombre}}</h4>
                     </div>
                     <div class="col-md-3">
+                        <div class="row text-center" *ngIf="modal2==true">
+                            <div class="col-md-12">
+                                <h4 style="visibility: hidden;">H</h4>
+                                <label class="containerCheck poppinsLight"> Seleccionar todos
+                                    <input type="checkbox" (change)="selectAll($event)">
+                                    <span id="todosCheck" class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="dropdown" *ngIf="segmentaciones.length!=0">
+                                    <button class="btn btn-primary dropdown-toggle poppinsLight mt-2" type="button"
+                                        data-toggle="dropdown">{{segmentaciones[0]['nombre']}}
+                                        <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li *ngFor="let segmentacion of segmentaciones| slice:1 ; let i=index">
+                                            <a (click)="change(i+1)" style="cursor: pointer;">{{segmentacion['nombre']}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <button type="submit" class="btn mt-3 guardarSeg" (click)="guardarSegmentacion()"
+                                    [disabled]="!btnDis ? 'disabled': null">Guardar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="productTable">
-                    <div class="row">
+                    <div class="row" *ngIf="modal2==false">
                         <div class="col categoryGrid" *ngFor="let product of productsData ; let index = index">
                             <div class="productCard" (click)="modal? addOrder(product): openUpdate(product.id)">
                                 <h4 class="poppinsLight productName">{{product.nombre}}</h4>
                             </div>
                         </div>
                     </div>
+                    <div class="row" *ngIf="modal2==true">
+                        <div class="col categoryGrid" *ngFor="let product of productsData ; let index = index">
+                            <div class="productCard" (click)="addOrder(product)">
+                                <label class="containerCheck">
+                                    <input type="checkbox" [checked]="checkedProd.get(product.id)"
+                                        (change)="checkedProduct($event,product.id)">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <h4 class="poppinsLight productName">{{product.nombre}}</h4>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>

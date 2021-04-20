@@ -1,0 +1,50 @@
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title ml-3" id="exampleModalLabel">{{tittle}}</h5>
+            <button type="button" class="close mr-2" aria-label="Close" (click)='closeModal()'>
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <h6 class="poppinsMedium">Nombre</h6>
+                        <input name="nombre" type="text" class="poppinsLight text-left form__field" placeholder="Nombre"
+                            [(ngModel)]="nombre" />
+                    </div>
+                    <div class="col-6">
+                        <h6 class="poppinsMedium">Impresora</h6>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle poppinsLight mt-2" type="button"
+                                data-toggle="dropdown" *ngIf="printers.length!=0">{{'Impresora '+printers[0]['index']}}
+                                <span class="caret"></span></button>
+                            <button class="btn btn-primary poppinsLight mt-2" type="button" *ngIf="printers.length==0">
+                                No hay dispositivos conectados
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu" *ngIf="printers.length!=0">
+                                <li *ngFor="let print of printers| slice:1 ; let i=index">
+                                    <a (click)="change(i+1)" style="cursor: pointer;">{{'Impresora'+print['index']}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 btnTest">
+                        <button type="submit" class="btn btn-secondary mr-4" (click)="printTest()">Probar
+                            impresora</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer mb-2">
+            <button type="submit" class="btn mt-3 Cancelar" (click)='closeModal()'>Cancelar</button>
+            <button type="submit" class="btn mt-3 Pagar" *ngIf="tipo =='add' "
+                (click)="createPrinter()">Agregar</button>
+            <button type="submit" class="btn mt-3 Pagar" *ngIf="tipo =='update' ">Actualizar</button>
+            <button type="submit" class="btn mt-3 Eliminar" *ngIf="tipo =='delete' ">Eliminar</button>
+        </div>
+    </div>
+</div>

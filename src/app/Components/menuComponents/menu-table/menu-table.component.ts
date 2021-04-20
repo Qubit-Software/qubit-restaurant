@@ -13,6 +13,7 @@ export class MenuTableComponent implements OnInit {
   searchText: string;
   categoriasData: CategoriaModel[];
   modal: boolean;
+  modal2: boolean;
   constructor(private order: OrderService, private router: Router, private route: ActivatedRoute) {
   }
 
@@ -21,6 +22,11 @@ export class MenuTableComponent implements OnInit {
     if (history.state.modal != null) {
       this.modal = history.state.modal;
     }
+    this.modal2 = false;
+    if (history.state.modal2 != null) {
+      this.modal2 = history.state.modal2;
+    }
+    console.log(this.modal2);
     this.llenaCategorias();
 
   }
@@ -42,6 +48,12 @@ export class MenuTableComponent implements OnInit {
   }
 
   settings() {
-    this.router.navigate(['../settings','new'], { relativeTo: this.route });
+    this.router.navigate(['../settings', 'new'], { relativeTo: this.route });
+  }
+  closeModal() {
+    document.getElementById("backdrop").style.display = "none"
+    document.getElementById("menuModal").style.display = "none"
+    document.getElementById("menuModal").className += document.getElementById("menuModal").className.replace("show", "")
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }

@@ -1,0 +1,36 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h4 class="poppinsMedium">Configuración</h4>
+                    </div>
+                </div>
+                <div class="row tableSettings">
+                    <div class="col-md-6">
+                        <p class="poppinsMedium">Segmentacion restaurante</p>
+                        <ul class="listSettings">
+                            <a [routerLink]="['printer']" [state]="{'type':'add'}" class="poppinsLight"
+                                (click)="openModal()">
+                                <li>Añadir impresora</li>
+                            </a>
+                            <a [routerLink]="['menuTable']" [state]="{'type':'add','modal2':true}" class="poppinsLight"
+                                (click)="openModal()">
+                                <li>Segmentar menú</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="menuModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true"
+    role="dialog">
+    <router-outlet></router-outlet>
+</div>
+
+
+<div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>

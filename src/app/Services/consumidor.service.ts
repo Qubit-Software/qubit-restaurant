@@ -32,9 +32,9 @@ export class ConsumidorService {
         })
       );
   }
-  findOne(cedula) {
+  findOne(cedula,id) {
     return this.http.get(
-      `${this.url}/findOne/${cedula}`).pipe(
+      `${this.url}/findOne/${cedula}/${id}`).pipe(
         map(resp => {
           return resp;
         })

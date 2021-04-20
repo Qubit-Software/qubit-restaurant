@@ -91,6 +91,7 @@ export class FacturaProductoComponent implements OnInit {
     [this.mesas[0], this.mesas[i]] = [this.mesas[i], this.mesas[0]];
     this.order.mesaId = this.mesas[0].id;
     this.dataArray = this.order.getOrder(this.order.mesaId);
+    this.llenaValores()
   }
 
   llenaValores() {
@@ -263,7 +264,7 @@ export class FacturaProductoComponent implements OnInit {
         let prod = new ProductsPosModel();
         prod.nombre = element.descripcion;
         prod.cantidad = String(element.cantidad);
-        prod.precio = HelperFunctions.formatter.format(+element.precio);
+        prod.precio = HelperFunctions.formatter.format((+element.precio) * element.cantidad);
         products.push(prod);
       });
       let menuArray: Object[];
@@ -284,12 +285,15 @@ export class FacturaProductoComponent implements OnInit {
       this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
         this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
         HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
-        HelperFunctions.formatter.format(this.cambioCalcule), factura,this.consumidor.nombre,this.mesas[0].mesa).subscribe(res => {
+        HelperFunctions.formatter.format(this.cambioCalcule), factura, this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
           this.venta.createVenta(this.sucursal.empresa.id, totalVenta, date, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
             this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
               this.order.UpdateConsumidor(new ConsumidorModel());
               this.dataArray = new Array();
               this.order.updateOrder(this.dataArray, this.mesas[0].id)
+              this.llenaValores();
+              this.recibeInput = '';
+              this.cambioCalcule = 0;
               Swal.close();
               Swal.fire('Ticket impreso',
                 'El ticket se ha dispensado con exito',

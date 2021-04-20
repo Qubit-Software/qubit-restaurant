@@ -12,6 +12,9 @@ import { MenuTableComponent } from './Components/menuComponents/menu-table/menu-
 import { MenuProductsComponent } from './Components/menuComponents/menu-products/menu-products.component';
 import { SettingsMenuComponent } from './Components/menuComponents/settings-menu/settings-menu.component';
 import { FacturasComponent } from './Pages/facturas/facturas.component';
+import { SettingsComponent } from './Pages/settings/settings.component';
+import { MainSettingsComponent } from './Components/settings/main-settings/main-settings.component';
+import { PrinterComponent } from './Components/settings/printer/printer.component';
 
 const routes: Routes = [
   { path: '', component: LogginComponent },
@@ -26,6 +29,17 @@ const routes: Routes = [
           { path: 'menuTable', component: MenuTableComponent },
           { path: 'menuProduct', component: MenuProductsComponent },
           { path: 'settings/:id', component: SettingsMenuComponent },
+        ]
+      },
+      {
+        path: 'settings', component: SettingsComponent, children: [
+          {
+            path: 'main', component: MainSettingsComponent, children: [
+              { path: 'printer', component: PrinterComponent },
+              { path: 'menuTable', component: MenuTableComponent },
+              { path: 'menuProduct', component: MenuProductsComponent },
+            ]
+          }
         ]
       },
     ]
