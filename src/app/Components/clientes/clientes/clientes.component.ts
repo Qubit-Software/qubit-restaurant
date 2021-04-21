@@ -58,7 +58,7 @@ export class ClientesComponent implements OnInit {
       text: 'Espere por favor'
     });
     Swal.showLoading();
-    this.consumidorService.findOne(this.consumidor.cedula,this.idEmpresa).subscribe(res => {
+    this.consumidorService.findOne(this.consumidor.cedula, this.idEmpresa).subscribe(res => {
       console.log(res['consumidor']);
       this.consumidor = res['consumidor'];
       this.order.UpdateConsumidor(this.consumidor);
@@ -90,25 +90,35 @@ export class ClientesComponent implements OnInit {
     });
     Swal.showLoading();
     this.newConsumidor = this.form.value;
-    this.consumidorService.createConsumidor(this.newConsumidor, 1).subscribe(res => {
-      console.log(res);
-      this.consumidor = res['consumidor'];
-      Swal.close();
-      Swal.fire({
-        title: 'Registro realizado',
-        icon: 'success',
-        html: 'El cliente se ha registrado',
+    if (ValidatorsFunctions.validateIdEmpresa()) {
+      let idEmpresa = localStorage.getItem('empresaId');
+      this.consumidorService.createConsumidor(this.newConsumidor, idEmpresa).subscribe(res => {
+        console.log(res);
+        this.consumidor = res['consumidor'];
+        Swal.close();
+        Swal.fire({
+          title: 'Registro realizado',
+          icon: 'success',
+          html: 'El cliente se ha registrado',
+        });
+        this.closeModal();
+      }, (err) => {
+        Swal.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'La Cedula ya está registrada'
+        });
+        console.log(err);
       });
-      this.closeModal();
-    }, (err) => {
+    } else {
       Swal.close();
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'La Cedula ya está registrada'
+        text: 'Se ha presentado un error incesperado'
       });
-      console.log(err);
-    });
+    }
   }
   openModal() {
     document.getElementById("backdrop").style.display = "block"
