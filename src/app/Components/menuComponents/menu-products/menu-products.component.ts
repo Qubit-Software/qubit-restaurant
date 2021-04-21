@@ -148,6 +148,7 @@ export class MenuProductsComponent implements OnInit {
     order.precio = prod.precio;
     order.descripcion = prod.nombre;
     order.cantidad = 1;
+    order.segmentacionId=prod.segmentacionId;
     if (this.orderData == null) {
       this.orderData = new Array();
     }

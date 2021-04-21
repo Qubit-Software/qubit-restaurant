@@ -34,6 +34,7 @@ export class MenuService {
             product.precio = prod['precio'];
             product.visible = prod['visible'];
             product.categoria = prod['categoriaId'];
+            product.segmentacionId = prod['segmentacionId'];
             dataArray.push(product);
             i++;
           });

@@ -125,6 +125,20 @@ input::-webkit-inner-spin-button {
   color: #282f5a;
   border: 1px solid #282f5a;
 }
+.printer{
+  font-size: 13px;
+  padding: 2px 10px 5px;
+  width: 12vh;
+  background-color: #DAE0F6;
+  border-radius: 6px;
+  color: #4D5DB7;
+}
+
+.printer:hover {
+  background-color: white;
+  color: #282f5a;
+  border: 1px solid #282f5a;
+}
 .Cancelar {
   font-size: 13px;
   padding: 2px 10px 5px;

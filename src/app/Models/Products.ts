@@ -5,4 +5,5 @@ export class ProductModel {
   nombre: string;
   precio: string;
   visible: boolean;
+  segmentacionId: number;
 }

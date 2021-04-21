@@ -4,4 +4,6 @@ export class OrdenModel {
     descripcion: string;
     precio: string;
     cantidad: number;
+    comentario: string;
+    segmentacionId: number;
 }
