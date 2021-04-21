@@ -49,6 +49,28 @@ export class PosService {
         })
       );
   }
+  preVenta(nit, tel, direccion, ciudad, fecha, products, subtotal, totalServicio, total, cliente, mesa) {
+    const authData = {
+      nit,
+      tel,
+      direccion,
+      ciudad,
+      fecha,
+      products,
+      subtotal,
+      totalServicio,
+      total,
+      cliente,
+      mesa
+    };
+    // console.log(authData);
+    return this.http.post(
+      `${this.urlPos}/preventa`, authData).pipe(
+        map(resp => {
+          return resp;
+        })
+      );
+  }
   posReport(nit, tel, direccion, ciudad, report, fecha, efectivo, tarjeta, otro, total) {
     const authData = {
       nit,

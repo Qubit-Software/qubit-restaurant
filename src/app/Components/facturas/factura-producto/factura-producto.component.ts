@@ -256,7 +256,67 @@ export class FacturaProductoComponent implements OnInit {
     }
   }
   printerPreVenta() {
-
+    if (this.consumidor.id == null) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor ingrese el cliente',
+        confirmButtonText: 'Ok',
+      });
+      return
+    }
+    if (this.dataArray == null || this.dataArray.length == 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor ingrese una orden',
+        confirmButtonText: 'Ok',
+      });
+      return
+    }
+    Swal.showLoading();
+    const date = new Date();
+    let fecha = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    let products: ProductsPosModel[];
+    products = new Array();
+    this.dataArray.forEach(element => {
+      let prod = new ProductsPosModel();
+      prod.nombre = element.descripcion;
+      prod.cantidad = String(element.cantidad);
+      prod.precio = HelperFunctions.formatter.format((+element.precio) * element.cantidad);
+      products.push(prod);
+    });
+    let menuArray: Object[];
+    menuArray = new Array();
+    this.dataArray.forEach(element => {
+      let menu = {
+        "cantidad": element.cantidad,
+        "menuId": element.id_product
+      };
+      menuArray.push(menu);
+    });
+    let propinaLoc = +(String(this.propina).replace("$", "").replace(".", ""));
+    let recibe = +(this.recibeInput.replace("$", "").replace(".", ""));
+    if (this.cambioCalcule < 0) {
+      this.cambioCalcule = 0;
+    }
+    let totalServicio = this.subtotal + (this.subtotal * 0.1);
+    this.pos.preVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
+      this.sucursal.sucursal.ciudad, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(totalServicio),
+      HelperFunctions.formatter.format(this.total), this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
+        Swal.close();
+        Swal.fire('Ticket impreso',
+          'El ticket se ha dispensado con exito',
+          'success');
+      }, (err) => {
+        Swal.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se encuentra la impresora conectada'
+        });
+        console.log(err);
+      });
   }
   getSegmentacion() {
     this.segmentaciones = new Array();
