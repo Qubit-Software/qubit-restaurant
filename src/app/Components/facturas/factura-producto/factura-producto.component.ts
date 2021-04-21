@@ -10,6 +10,9 @@ import Swal from 'sweetalert2';
 import { VentaService } from 'src/app/Services/venta.service';
 import { MesaModel } from 'src/app/Models/Mesas';
 import { ConsumidorModel } from 'src/app/Models/Consumidor';
+import { ValidatorsFunctions } from 'src/app/helpers/validators';
+import { PrinterService } from 'src/app/Services/printer.service';
+import * as jQuery from 'jquery';
 
 @Component({
   selector: 'app-factura-producto',
@@ -17,6 +20,7 @@ import { ConsumidorModel } from 'src/app/Models/Consumidor';
   styleUrls: ['./factura-producto.component.css']
 })
 export class FacturaProductoComponent implements OnInit {
+  @Input() orderTemplate: boolean;
 
   widthModal = '0px';
   orderModalOpen: boolean;
@@ -33,9 +37,9 @@ export class FacturaProductoComponent implements OnInit {
   recibeInput: string = "0";
   cambioCalcule: number = 0;
   consumidor: ConsumidorModel;
-
+  segmentaciones: object[];
   constructor(private router: Router, private route: ActivatedRoute, private order: OrderService, private sucursal: SucursalService,
-    private pos: PosService, private venta: VentaService) {
+    private pos: PosService, private venta: VentaService, private printer: PrinterService) {
     order.openModal$.subscribe((newBool: boolean[]) => {
       this.orderModalOpen = newBool[0];
       this.openModalOrder();
@@ -54,10 +58,16 @@ export class FacturaProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.mesas.push(new MesaModel());
     this.dataArray = this.order.getOrder(this.mesas[0].id);
-    $(".recibeInput").on({
+    this.llenaMesas();
+    this.getSegmentacion();
+  }
+  ngAfterViewChecked() {
+    jQuery(".recibeInput").on({
       "focus": function (event) {
+        console.log('Hola')
         $(event.target).select();
       },
       "keyup": function (event) {
@@ -67,7 +77,6 @@ export class FacturaProductoComponent implements OnInit {
         });
       }
     });
-    this.llenaMesas();
   }
   llenaMesas() {
     this.mesas = new Array();
@@ -244,6 +253,108 @@ export class FacturaProductoComponent implements OnInit {
       });
     } else {
       this.enviaPos();
+    }
+  }
+  printerPreVenta() {
+
+  }
+  getSegmentacion() {
+    this.segmentaciones = new Array();
+    if (ValidatorsFunctions.validateIdEmpresa()) {
+      let idSucursal = localStorage.getItem('sucursalId');
+      this.printer.getSegmentaciones(idSucursal).subscribe(res => {
+        res['segmentacion'].forEach(element => {
+          let segmentacion = {
+            'id': element['id'],
+            'impresora': element['impresora']
+          };
+          this.segmentaciones.push(segmentacion);
+        });
+      }, (err) => {
+        Swal.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Se ha presentado un error inesperado'
+        });
+        console.log(err);
+        return null
+      });
+    } else {
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Se ha presentado un error inesperado'
+      });
+      return null
+    }
+  }
+  async ordenar() {
+    if (this.dataArray == null || this.dataArray.length == 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Realiza una orden para poder continuar',
+        confirmButtonText: 'Ok',
+      });
+      return
+    }
+    const time = new Date();
+    const hour = `${time.getHours()}:${time.getMinutes()}`;
+    let hourFormat = HelperFunctions.formatAMPM(hour);
+    if (this.segmentaciones != null) {
+      console.log(this.segmentaciones.length);
+      this.segmentaciones.forEach(seg => {
+        let prodBySeg
+        const items = this.dataArray.filter(item => item.segmentacionId == seg['id']);
+        prodBySeg = items;
+        console.log(prodBySeg);
+        let menuArray: Object[] = new Array();
+        prodBySeg.forEach(element => {
+          let commentProd = "";
+          if (element.comentario != null) {
+            commentProd = element.comentario
+          }
+          let menu = {
+            "nombre": element.descripcion,
+            "cantidad": element.cantidad,
+            "comentario": commentProd,
+          };
+          menuArray.push(menu);
+        });
+        if (menuArray.length > 0 || menuArray != null) {
+          Swal.fire({
+            allowOutsideClick: false,
+            icon: 'info',
+            text: 'Espere por favor'
+          });
+          Swal.showLoading();
+          this.pos.posOrder(hourFormat, this.mesas[0].mesa, menuArray, seg['impresora']).subscribe(res => {
+            if (res['ok']) {
+              Swal.close();
+              Swal.fire('Ticket impreso',
+                'Orden enviada',
+                'success');
+            } else {
+              Swal.close();
+              Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: res['msg']
+              });
+            }
+          }, (err) => {
+            Swal.close();
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'No se encuentra la impresora conectada'
+            });
+            console.log(err);
+          });
+        }
+      });
     }
   }
   enviaPos() {

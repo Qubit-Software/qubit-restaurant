@@ -69,4 +69,17 @@ export class PosService {
         })
       );
   }
+  posOrder(hora, mesa, products, idDevice) {
+    const authData = {
+      hora,
+      mesa,
+      products
+    };
+    return this.http.post(
+      `${this.urlPos}/order/${idDevice}`, authData).pipe(
+        map(resp => {
+          return resp;
+        })
+      );
+  }
 }

@@ -36,7 +36,7 @@
             <td></td>
             <td></td>
             <td class="d-flex justify-content-around qubitIcons">
-              <button [routerLink]="['./menuTable']" [state]="{'modal':true}" (click)='CreateOrden()' class="btn-plus">
+              <button [routerLink]="['./menuTable']" [state]="{'modal':true }" (click)='CreateOrden()' class="btn-plus">
                 <fa-icon [icon]="faPlus"></fa-icon>
               </button>
             </td>
@@ -45,7 +45,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-7" *ngIf="orderTemplate">
         <div class="row">
           <div class="col-md-8">
             <h4>Forma de pago</h4>
@@ -74,7 +74,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5">
+      <div [ngClass]="orderTemplate ? 'col-md-5': 'col-md-7' ">
         <table class="tableBottom">
           <tbody class="tableBottom">
             <tr>
@@ -89,8 +89,8 @@
               <td>Impo consumo:</td>
               <td>{{impoConsumo | currency : '$': 'symbol':'1.0-0'}}</td>
             </tr>
-            <input type="checkbox" class="serviceCheck" (change)="propinaChange($event)">
-            <tr [ngClass]="{ 'underline': !propinaBool }">
+            <input type="checkbox" class="serviceCheck" (change)="propinaChange($event)" *ngIf="orderTemplate">
+            <tr [ngClass]="{ 'underline': !propinaBool }" *ngIf="orderTemplate">
               <td>Servicio voluntario:</td>
               <td class="tdRecibeInput"><input type="text" class="recibeInput" [(ngModel)]="propina"
                   (ngModelChange)="llenaValores()"></td>
@@ -105,9 +105,13 @@
             </tr>
           </tbody>
         </table>
-        <div class="containerButtoms">
+        <div class="containerButtoms text-center">
           <button type="submit" class="btn mt-3 Cancelar" (click)="cancelOrder()">Cancelar</button>
-          <button type="submit" class="btn mt-3 Pagar" (click)="pagarOrden()">Pagar</button>
+          <button type="submit" class="btn mt-3 printer" (click)="printerPreVenta()"
+            *ngIf="!orderTemplate">Imprimir</button>
+          <button type="submit" class="btn mt-3 Pagar"
+            (click)="(orderTemplate) ? pagarOrden() : ordenar()">{{(orderTemplate)? 'Pagar' :
+            'Ordenar'}}</button>
         </div>
       </div>
     </div>
@@ -131,5 +135,5 @@
 
 <div id="slideOrder" class="slideOrder" [style.width]="widthModal">
   <a href="javascript:void(0)" class="closebtn" (click)="closeModalOrder()" #close>&times;</a>
-  <app-nav-order></app-nav-order>
+  <app-nav-order [orderTemplate]="!orderTemplate"></app-nav-order>
 </div>

@@ -26,7 +26,6 @@ export class MenuTableComponent implements OnInit {
     if (history.state.modal2 != null) {
       this.modal2 = history.state.modal2;
     }
-    console.log(this.modal2);
     this.llenaCategorias();
 
   }

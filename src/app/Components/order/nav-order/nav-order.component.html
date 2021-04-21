@@ -1,7 +1,7 @@
 <aside class="sidebarOrder">
     <header>
         <div id="userDiv" class="text-center">
-            <p class="d-inline poppinsMedium mr-3">Aquamonte S.A.S</p>
+            <p class="d-inline poppinsMedium mr-3">Restaurant S.A.S</p>
             <img id="profilePic" class=" d-inline ml-2" src="../../../../assets/images/userIcons/Screenshot_1.png"
                 height="50" width="50">
         </div>
@@ -23,6 +23,9 @@
                         <h4 class="poppinsLight nameProduct">{{orderSingle.descripcion}}</h4>
                     </div>
                     <div class="col-md-3 text-right">
+                        <button class="btn-comment" (click)="openModal(index)" *ngIf="orderTemplate">
+                            <fa-icon [icon]="faComment"></fa-icon>
+                        </button>
                         <button class="btn-floating" (click)="deleteOrder(index)">
                             <fa-icon [icon]="faTimes"></fa-icon>
                         </button>
@@ -36,3 +39,34 @@
         <button type="submit" class="btn mt-3 Pagar" (click)="acceptOrder()">Aceptar</button>
     </footer>
 </aside>
+
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true"
+    role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title ml-3" id="exampleModalLabel">Comentarios</h5>
+                <button type="button" class="close mr-2" aria-label="Close" (click)='closeModal()'>
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row mt-4">
+                        <div class="col-12 text-center">
+                            <input name="nombre" type="text" class="poppinsLight text-left form__field"
+                                placeholder="Comentario" [(ngModel)]="comentario" autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer mb-2">
+                <button type="submit" class="btn mt-3 Cancelar" (click)="closeModal()">Cancelar</button>
+                <button type="submit" class="btn mt-3 Pagar" (click)="addComment()">Agregar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal-backdrop fade show" id="backdrop" style="display: none;"></div>
