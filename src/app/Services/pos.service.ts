@@ -49,7 +49,7 @@ export class PosService {
         })
       );
   }
-  preVenta(nit, tel, direccion, ciudad, fecha, products, subtotal, totalServicio, total, cliente, mesa) {
+  preVenta(nit, tel, direccion, ciudad, fecha, products, subtotal, valorServicio, totalServicio, total, cliente, mesa) {
     const authData = {
       nit,
       tel,
@@ -58,6 +58,7 @@ export class PosService {
       fecha,
       products,
       subtotal,
+      valorServicio,
       totalServicio,
       total,
       cliente,

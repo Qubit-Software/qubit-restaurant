@@ -295,14 +295,10 @@ export class FacturaProductoComponent implements OnInit {
       };
       menuArray.push(menu);
     });
-    let propinaLoc = +(String(this.propina).replace("$", "").replace(".", ""));
-    let recibe = +(this.recibeInput.replace("$", "").replace(".", ""));
-    if (this.cambioCalcule < 0) {
-      this.cambioCalcule = 0;
-    }
     let totalServicio = this.subtotal + (this.subtotal * 0.1);
+    let servicio = this.subtotal * 0.1;
     this.pos.preVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
-      this.sucursal.sucursal.ciudad, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(totalServicio),
+      this.sucursal.sucursal.ciudad, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(servicio), HelperFunctions.formatter.format(totalServicio),
       HelperFunctions.formatter.format(this.total), this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
         Swal.close();
         Swal.fire('Ticket impreso',
