@@ -58,8 +58,6 @@ export class FacturaProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const date = new Date();
-    console.log(date);
     this.mesas.push(new MesaModel());
     this.dataArray = this.order.getOrder(this.mesas[0].id);
     this.llenaMesas();
@@ -454,7 +452,7 @@ export class FacturaProductoComponent implements OnInit {
         this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
         HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
         HelperFunctions.formatter.format(this.cambioCalcule), factura, this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
-          this.venta.createVenta(this.sucursal.empresa.id, totalVenta, date, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
+          this.venta.createVenta(this.sucursal.empresa.id, totalVenta, fecha, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
             this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
               this.order.UpdateConsumidor(new ConsumidorModel());
               this.dataArray = new Array();
