@@ -424,6 +424,7 @@ export class FacturaProductoComponent implements OnInit {
       factura = factura + 1;
       const date = new Date();
       let fecha = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+      let fecha1 = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
       let products: ProductsPosModel[];
       products = new Array();
       this.dataArray.forEach(element => {
