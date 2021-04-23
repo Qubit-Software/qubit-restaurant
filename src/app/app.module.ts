@@ -37,6 +37,7 @@ import { FacturasTableComponent } from './Components/facturas/facturas-table/fac
 import { SettingsComponent } from './Pages/settings/settings.component';
 import { MainSettingsComponent } from './Components/settings/main-settings/main-settings.component';
 import { PrinterComponent } from './Components/settings/printer/printer.component';
+import { ProfileInfoComponent } from './Components/user/profile-info/profile-info.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { PrinterComponent } from './Components/settings/printer/printer.componen
     SettingsComponent,
     MainSettingsComponent,
     PrinterComponent,
+    ProfileInfoComponent,
   ],
   imports: [
     BrowserModule,
