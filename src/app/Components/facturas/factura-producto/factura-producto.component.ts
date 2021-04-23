@@ -58,7 +58,8 @@ export class FacturaProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    const date = new Date();
+    console.log(date);
     this.mesas.push(new MesaModel());
     this.dataArray = this.order.getOrder(this.mesas[0].id);
     this.llenaMesas();
