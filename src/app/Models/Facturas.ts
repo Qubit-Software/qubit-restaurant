@@ -3,5 +3,6 @@ export class FacturasModel {
     idFactura: number;
     fecha: Date;
     metodo: string;
+    propina: string;
     total: string;
 }

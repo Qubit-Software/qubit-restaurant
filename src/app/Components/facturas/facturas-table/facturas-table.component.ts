@@ -21,6 +21,7 @@ export class FacturasTableComponent implements OnInit {
   efectivo = 0;
   tarjeta = 0;
   otro = 0;
+  propina = 0;
   total = 0;
 
   constructor(private venta: VentaService, private sucursal: SucursalService, private pos: PosService) { }
@@ -47,6 +48,7 @@ export class FacturasTableComponent implements OnInit {
         factura.fecha.setDate(factura.fecha.getDate() + 1);
         factura.fecha.setHours(0, 0, 0, 0)
         factura.metodo = element['tipo'];
+        factura.propina = element['propina'];
         factura.total = element['preciototal'];
         this.allFacturas.push(factura);
       });
@@ -67,7 +69,7 @@ export class FacturasTableComponent implements OnInit {
     let fecha = `${this.currentDate.getDate()}/${this.currentDate.getMonth() + 1}/${this.currentDate.getFullYear()}`;
     this.pos.posReport(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
       this.sucursal.sucursal.ciudad, this.period, fecha, HelperFunctions.formatter.format(this.efectivo),
-      HelperFunctions.formatter.format(this.tarjeta), HelperFunctions.formatter.format(this.otro), HelperFunctions.formatter.format(this.total)).subscribe(res => {
+      HelperFunctions.formatter.format(this.tarjeta), HelperFunctions.formatter.format(this.otro), HelperFunctions.formatter.format(this.propina), HelperFunctions.formatter.format(this.total)).subscribe(res => {
         Swal.close();
         Swal.fire('Ticket impreso',
           'El ticket se ha dispensado con exito',
@@ -94,6 +96,7 @@ export class FacturasTableComponent implements OnInit {
   }
   day() {
     this.total = 0;
+    this.propina = 0;
     this.efectivo = 0;
     this.otro = 0;
     this.tarjeta = 0;
@@ -109,12 +112,14 @@ export class FacturasTableComponent implements OnInit {
       if (fatura.metodo == "Otro") {
         this.otro = this.otro + (+fatura.total);
       }
+      this.propina = this.propina + (+fatura.propina);
       this.total = this.total + (+fatura.total)
     });
 
   }
   month() {
     this.total = 0;
+    this.propina = 0;
     this.efectivo = 0;
     this.otro = 0;
     this.tarjeta = 0;
@@ -133,6 +138,7 @@ export class FacturasTableComponent implements OnInit {
       if (fatura.metodo == "Otro") {
         this.otro = this.otro + (+fatura.total);
       }
+      this.propina = this.propina + (+fatura.propina);
       this.total = this.total + (+fatura.total)
     });
 
