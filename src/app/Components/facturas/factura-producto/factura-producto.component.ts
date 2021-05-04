@@ -59,7 +59,6 @@ export class FacturaProductoComponent implements OnInit {
 
   ngOnInit(): void {
     const date = new Date();
-    console.log(date);
     this.mesas.push(new MesaModel());
     this.dataArray = this.order.getOrder(this.mesas[0].id);
     this.llenaMesas();
@@ -68,7 +67,6 @@ export class FacturaProductoComponent implements OnInit {
   ngAfterViewChecked() {
     jQuery(".recibeInput").on({
       "focus": function (event) {
-        console.log('Hola')
         $(event.target).select();
       },
       "keyup": function (event) {
@@ -111,7 +109,6 @@ export class FacturaProductoComponent implements OnInit {
         this.subtotal = this.subtotal + (element.cantidad * +element.precio);
       });
       if (this.propinaBool) {
-        console.log(typeof this.propina);
         if ((typeof this.propina) == "string") {
           this.propina = +(String(this.propina).replace("$", "").replace(".", ""));
         } else {
@@ -450,40 +447,40 @@ export class FacturaProductoComponent implements OnInit {
         this.cambioCalcule = 0;
       }
       let totalVenta = this.total - propinaLoc;
-      this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
-        this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
-        HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
-        HelperFunctions.formatter.format(this.cambioCalcule), factura, this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
-          this.venta.createVenta(this.sucursal.empresa.id, totalVenta, date, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
-            this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
-              this.order.UpdateConsumidor(new ConsumidorModel());
-              this.dataArray = new Array();
-              this.order.updateOrder(this.dataArray, this.mesas[0].id)
-              this.llenaValores();
-              this.recibeInput = '';
-              this.cambioCalcule = 0;
-              Swal.close();
-              Swal.fire('Ticket impreso',
-                'El ticket se ha dispensado con exito',
-                'success');
-            }, (err) => {
-              Swal.close();
-              Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Vuelve a intentarlo'
-              });
-              console.log(err);
-            });
+      // this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
+      //   this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
+      //   HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
+      //   HelperFunctions.formatter.format(this.cambioCalcule), factura, this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
+      this.venta.createVenta(this.sucursal.empresa.id, totalVenta, fecha, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
+        this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
+          this.order.UpdateConsumidor(new ConsumidorModel());
+          this.dataArray = new Array();
+          this.order.updateOrder(this.dataArray, this.mesas[0].id)
+          this.llenaValores();
+          this.recibeInput = '';
+          this.cambioCalcule = 0;
+          Swal.close();
+          Swal.fire('Ticket impreso',
+            'El ticket se ha dispensado con exito',
+            'success');
         }, (err) => {
           Swal.close();
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'No se encuentra la impresora conectada'
+            text: 'Vuelve a intentarlo'
           });
           console.log(err);
         });
+      // }, (err) => {
+      //   Swal.close();
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Error',
+      //     text: 'No se encuentra la impresora conectada'
+      //   });
+      //   console.log(err);
+      // });
     })
   }
 }

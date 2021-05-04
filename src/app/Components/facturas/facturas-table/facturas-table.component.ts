@@ -100,6 +100,7 @@ export class FacturasTableComponent implements OnInit {
     this.efectivo = 0;
     this.otro = 0;
     this.tarjeta = 0;
+    console.log(this.allFacturas);
     let items = this.allFacturas.filter(item => item.fecha.getTime() === this.currentDate.getTime());
     this.facturas = items;
     this.facturas.forEach(fatura => {

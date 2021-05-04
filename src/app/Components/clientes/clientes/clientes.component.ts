@@ -59,7 +59,6 @@ export class ClientesComponent implements OnInit {
     });
     Swal.showLoading();
     this.consumidorService.findOne(this.consumidor.cedula, this.idEmpresa).subscribe(res => {
-      console.log(res['consumidor']);
       this.consumidor = res['consumidor'];
       this.order.UpdateConsumidor(this.consumidor);
       Swal.close();
