@@ -94,6 +94,7 @@ export class ClientesComponent implements OnInit {
       this.consumidorService.createConsumidor(this.newConsumidor, idEmpresa).subscribe(res => {
         console.log(res);
         this.consumidor = res['consumidor'];
+        this.order.UpdateConsumidor(this.consumidor);
         Swal.close();
         Swal.fire({
           title: 'Registro realizado',

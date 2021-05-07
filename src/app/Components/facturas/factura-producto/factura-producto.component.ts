@@ -58,7 +58,6 @@ export class FacturaProductoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const date = new Date();
     this.mesas.push(new MesaModel());
     this.dataArray = this.order.getOrder(this.mesas[0].id);
     this.llenaMesas();
@@ -272,6 +271,11 @@ export class FacturaProductoComponent implements OnInit {
       });
       return
     }
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Espere por favor'
+    });
     Swal.showLoading();
     const date = new Date();
     let fecha = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -358,12 +362,10 @@ export class FacturaProductoComponent implements OnInit {
     const hour = `${time.getHours()}:${time.getMinutes()}`;
     let hourFormat = HelperFunctions.formatAMPM(hour);
     if (this.segmentaciones != null) {
-      console.log(this.segmentaciones.length);
       this.segmentaciones.forEach(seg => {
         let prodBySeg
         const items = this.dataArray.filter(item => item.segmentacionId == seg['id']);
         prodBySeg = items;
-        console.log(prodBySeg);
         let menuArray: Object[] = new Array();
         prodBySeg.forEach(element => {
           let commentProd = "";
@@ -448,10 +450,10 @@ export class FacturaProductoComponent implements OnInit {
         this.cambioCalcule = 0;
       }
       let totalVenta = this.total - propinaLoc;
-      // this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
-      //   this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
-      //   HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
-      //   HelperFunctions.formatter.format(this.cambioCalcule), factura, this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
+      this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
+        this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
+        HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
+        HelperFunctions.formatter.format(this.cambioCalcule), factura, this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
       this.venta.createVenta(this.sucursal.empresa.id, totalVenta, fecha1, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
         this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
           this.order.UpdateConsumidor(new ConsumidorModel());
@@ -473,15 +475,15 @@ export class FacturaProductoComponent implements OnInit {
           });
           console.log(err);
         });
-      // }, (err) => {
-      //   Swal.close();
-      //   Swal.fire({
-      //     icon: 'error',
-      //     title: 'Error',
-      //     text: 'No se encuentra la impresora conectada'
-      //   });
-      //   console.log(err);
-      // });
+      }, (err) => {
+        Swal.close();
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se encuentra la impresora conectada'
+        });
+        console.log(err);
+      });
     })
   }
 }

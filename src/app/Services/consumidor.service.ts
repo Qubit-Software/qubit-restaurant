@@ -16,7 +16,6 @@ export class ConsumidorService {
       ...consumidor,
       empresaId
     };
-    console.log(authData);
     return this.http.post(
       `${this.url}/new`, authData).pipe(
         map(resp => {
