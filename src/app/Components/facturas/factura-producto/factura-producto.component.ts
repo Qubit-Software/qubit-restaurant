@@ -463,7 +463,6 @@ export class FacturaProductoComponent implements OnInit {
     }
   }
   enviaPos() {
-    console.log('hola');
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',
@@ -548,17 +547,9 @@ export class FacturaProductoComponent implements OnInit {
     });
     Swal.showLoading();
     this.pos.posDomicilio(this.consumidor.nombre, this.consumidor.direccion, this.consumidor.telefono, this.comentarioDomicilio).subscribe(res => {
-      if (this.sucursal.empresa == null) {
-        this.sucursal.getSucursalInfo().subscribe(res => {
-          Swal.close();
-          this.enviaPos();
-          this.closeDomicilioModal()
-        });
-      } else {
-        Swal.close();
-        this.enviaPos();
-        this.closeDomicilioModal()
-      }
+      Swal.close();
+      this.comentarioDomicilio = '';
+      this.closeDomicilioModal()
     }, (err) => {
       Swal.close();
       Swal.fire({
