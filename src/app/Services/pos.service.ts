@@ -106,4 +106,18 @@ export class PosService {
         })
       );
   }
+  posDomicilio(cliente, direccion, telefono, comentario) {
+    const authData = {
+      cliente,
+      direccion,
+      telefono,
+      comentario
+    };
+    return this.http.post(
+      `${this.urlPos}/domicilio`, authData).pipe(
+        map(resp => {
+          return resp;
+        })
+      );
+  }
 }

@@ -49,6 +49,13 @@ h4 {
   transition: border-color 0.2s;
   margin-bottom: 4vh;
 }
+.form__field:focus{
+  transition: 0.09s;
+  border-bottom: 3px solid#343E7D;
+  border-width: 3px;
+  border-image-slice: 1;
+  box-shadow: none;
+}
 .tableBottom{
   background-color: white;
 }
@@ -252,6 +259,73 @@ display: none;
   left: 0px;
   margin-top: 8px;
 }
+.containerCheck {
+  position: relative;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.containerCheck input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  border-radius: 3px;
+  background-color: #343E7D;
+}
+
+/* On mouse-over, add a grey background color */
+.containerCheck:hover input ~ .checkmark {
+  background-color: #343E7D;
+}
+
+/* When the checkbox is checked, add a blue background */
+.containerCheck input:checked ~ .checkmark {
+  background-color: #343E7D;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+/* Show the checkmark when checked */
+.containerCheck input:checked ~ .checkmark::after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+  .containerCheck .checkmark::after {
+  left: 6px;
+  top: 3px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.domicilioText{
+  margin-left: 1.5rem;
+  margin-top: 0.4rem;
+  vertical-align: text-top;
+}
 .slideOrder {
   height: 100%;
   width: 0;
@@ -282,3 +356,45 @@ display: none;
   text-decoration: line-through;
   color: gray;
 }
+
+/******************** Modal Styles ***************************/
+
+.btn-primary{
+  border-color: #21274d;
+}
+.modalDomicilio-header {
+  background: #4D5DB7;
+  color: white;
+  padding: 0.2rem;
+}
+
+.close {
+  color: white;
+  text-shadow: none;
+}
+
+.modalDomicilio-footer {
+  justify-content: center;
+  padding: 0rem;
+  padding-bottom: 0.8rem;
+  border: none;
+}
+
+div.modalDomicilio-body div h6 {
+  margin: 0;
+}
+
+.modalDomicilio-dialog{
+  max-width: 60vw;
+}
+#modalDomicilio{
+  margin: auto;
+  background-color: white;
+  width: 50%;
+  display: block;
+}
+#footerDomicilio{
+  justify-content: center;
+  border-top: none;
+}
+/******************** Modal Styles ends***************************/

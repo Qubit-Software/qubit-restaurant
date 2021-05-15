@@ -2,15 +2,26 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 mb-4">
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle poppinsLight mt-2" type="button" data-toggle="dropdown"
-            *ngIf="mesas.length>0">{{'Mesa '+mesas[0]['mesa']}}
-            <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-            <li *ngFor="let mesa of mesas ; let i=index">
-              <a (click)="change(i)" style="cursor: pointer;" *ngIf="i!=0">{{'Mesa '+mesas[i].mesa}}</a>
-            </li>
-          </ul>
+        <div class="row">
+          <div class="col-md-8">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle poppinsLight mt-2" type="button" data-toggle="dropdown"
+                *ngIf="mesas.length>0">{{'Mesa '+mesas[0]['mesa']}}
+                <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li *ngFor="let mesa of mesas ; let i=index">
+                  <a (click)="change(i)" style="cursor: pointer;" *ngIf="i!=0">{{'Mesa '+mesas[i].mesa}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <label class="containerCheck">
+              <input id="domicilio" type="checkbox" (change)="checkedDomicilio($event)">
+              <span class="checkmark"></span>
+            </label>
+            <label for="domicilio" class="domicilioText poppinsMedium">Domicilios</label>
+          </div>
         </div>
         <table>
           <tr class="poppinsMedium">
@@ -136,4 +147,44 @@
 <div id="slideOrder" class="slideOrder" [style.width]="widthModal">
   <a href="javascript:void(0)" class="closebtn" (click)="closeModalOrder()" #close>&times;</a>
   <app-nav-order [orderTemplate]="!orderTemplate"></app-nav-order>
+</div>
+
+<div class="modal fade" id="domicilioModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-modal="true"
+  role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div id="modalDomicilio" class="modal-content">
+      <div class="modalDomicilio-header">
+        <h5 class="modal-title ml-3" id="exampleModalLabel">Domicilio</h5>
+        <button type="button" class="close mr-2" aria-label="Close" (click)='closeDomicilioModal()'>
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modalDomicilio-body" style="margin-top: 1rem;">
+        <div class="container-fluid">
+          <div class="row mb-3">
+            <div class="col-4">
+              <h6 class="poppinsMedium">Nombre</h6>
+              <input type="text" class="poppinsLight form__field text-left" [(ngModel)]="consumidor.nombre"/>
+            </div>
+            <div class="col-4">
+              <h6 class="poppinsMedium">Direccion</h6>
+              <input type="text" class="poppinsLight form__field text-left" [(ngModel)]="consumidor.direccion"/>
+            </div>
+            <div class="col-4">
+              <h6 class="poppinsMedium">Celular</h6>
+              <input type="text" class="poppinsLight form__field text-left" [(ngModel)]="consumidor.telefono"/>
+            </div>
+            <div class="col-12">
+              <h6 class="poppinsMedium">Comentario</h6>
+              <input type="text" class="poppinsLight form__field text-left" [(ngModel)]="comentarioDomicilio" autocomplete="off" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="footerDomicilio" class="modal-footer mb-2">
+        <button type="submit" class="btn btn-secondary mr-4" (click)="generarDomicilio()">Generar factura</button>
+        <button type="button" class="btn btn-primary ml-2" (click)='closeDomicilioModal()'>Cancelar</button>
+      </div>
+    </div>
+  </div>
 </div>

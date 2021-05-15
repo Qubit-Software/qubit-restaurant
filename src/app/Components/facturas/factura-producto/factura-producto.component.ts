@@ -38,6 +38,9 @@ export class FacturaProductoComponent implements OnInit {
   cambioCalcule: number = 0;
   consumidor: ConsumidorModel;
   segmentaciones: object[];
+  domicilioCheck: boolean = false;
+  comentarioDomicilio: string = '';
+
   constructor(private router: Router, private route: ActivatedRoute, private order: OrderService, private sucursal: SucursalService,
     private pos: PosService, private venta: VentaService, private printer: PrinterService) {
     order.openModal$.subscribe((newBool: boolean[]) => {
@@ -124,7 +127,6 @@ export class FacturaProductoComponent implements OnInit {
       this.calculaCambio();
     }
   }
-
   openModalOrder() {
     if (this.orderModalOpen != null) {
       if (this.orderModalOpen) {
@@ -207,6 +209,11 @@ export class FacturaProductoComponent implements OnInit {
     this.order.openModal([false, true]);
     this.router.navigate(['./'], { relativeTo: this.route });
   }
+  closeDomicilioModal() {
+    document.getElementById("backdrop").style.display = "none"
+    document.getElementById("domicilioModal").style.display = "none"
+    document.getElementById("domicilioModal").className += document.getElementById("domicilioModal").className.replace("show", "")
+  }
   propinaChange(event) {
     this.propinaBool = event.target.checked
     this.llenaValores();
@@ -216,7 +223,12 @@ export class FacturaProductoComponent implements OnInit {
     numberRecibe = +(this.recibeInput.replace("$", "").replace(".", ""));
     this.cambioCalcule = numberRecibe - this.total;
   }
+  checkedDomicilio(event) {
+    let bool = event.target.checked
+    this.domicilioCheck = bool;;
+  }
   pagarOrden() {
+    console.log(this.domicilioCheck);
     if (this.consumidor.id == null) {
       Swal.fire({
         icon: 'error',
@@ -244,12 +256,49 @@ export class FacturaProductoComponent implements OnInit {
       });
       return
     }
-    if (this.sucursal.empresa == null) {
-      this.sucursal.getSucursalInfo().subscribe(res => {
-        this.enviaPos();
-      });
+    if (!this.domicilioCheck) {
+      Swal.fire({
+        title: '¿Desea imprimir ticket?',
+        icon: 'warning',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: `Pagar e imprimir`,
+        denyButtonText: `Pagar`,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (this.sucursal.empresa == null) {
+            this.sucursal.getSucursalInfo().subscribe(res => {
+              this.enviaPos();
+            });
+          } else {
+            this.enviaPos();
+          }
+        } else if (result.isDenied) {
+          if (this.sucursal.empresa == null) {
+            this.sucursal.getSucursalInfo().subscribe(res => {
+              Swal.fire({
+                allowOutsideClick: false,
+                icon: 'info',
+                text: 'Espere por favor'
+              });
+              Swal.showLoading();
+              this.generateVenta();
+            });
+          } else {
+            Swal.fire({
+              allowOutsideClick: false,
+              icon: 'info',
+              text: 'Espere por favor'
+            });
+            Swal.showLoading();
+            this.generateVenta();
+          }
+        }
+      })
     } else {
-      this.enviaPos();
+      document.getElementById("backdrop").style.display = "block"
+      document.getElementById("domicilioModal").style.display = "block"
+      document.getElementById("domicilioModal").className += "show"
     }
   }
   printerPreVenta() {
@@ -414,6 +463,7 @@ export class FacturaProductoComponent implements OnInit {
     }
   }
   enviaPos() {
+    console.log('hola');
     Swal.fire({
       allowOutsideClick: false,
       icon: 'info',
@@ -425,7 +475,6 @@ export class FacturaProductoComponent implements OnInit {
       factura = factura + 1;
       const date = new Date();
       let fecha = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
-      let fecha1 = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
       let products: ProductsPosModel[];
       products = new Array();
       this.dataArray.forEach(element => {
@@ -435,56 +484,90 @@ export class FacturaProductoComponent implements OnInit {
         prod.precio = HelperFunctions.formatter.format((+element.precio) * element.cantidad);
         products.push(prod);
       });
-      let menuArray: Object[];
-      menuArray = new Array();
-      this.dataArray.forEach(element => {
-        let menu = {
-          "cantidad": element.cantidad,
-          "menuId": element.id_product
-        };
-        menuArray.push(menu);
-      });
       let propinaLoc = +(String(this.propina).replace("$", "").replace(".", ""));
       let recibe = +(this.recibeInput.replace("$", "").replace(".", ""));
       if (this.cambioCalcule < 0) {
         this.cambioCalcule = 0;
       }
-      let totalVenta = this.total - propinaLoc;
       this.pos.posVenta(this.sucursal.empresa.nit, this.sucursal.empresa.telefono, this.sucursal.sucursal.direccion,
         this.sucursal.sucursal.ciudad, factura, fecha, products, HelperFunctions.formatter.format(this.subtotal), HelperFunctions.formatter.format(propinaLoc),
         HelperFunctions.formatter.format(this.total), HelperFunctions.formatter.format(recibe),
         HelperFunctions.formatter.format(this.cambioCalcule), factura, this.consumidor.nombre, this.mesas[0].mesa).subscribe(res => {
-      this.venta.createVenta(this.sucursal.empresa.id, totalVenta, fecha1, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
-        this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
-          this.order.UpdateConsumidor(new ConsumidorModel());
-          this.dataArray = new Array();
-          this.order.updateOrder(this.dataArray, this.mesas[0].id)
-          this.llenaValores();
-          this.recibeInput = '';
-          this.cambioCalcule = 0;
-          Swal.close();
-          Swal.fire('Ticket impreso',
-            'El ticket se ha dispensado con exito',
-            'success');
+          this.generateVenta();
         }, (err) => {
           Swal.close();
           Swal.fire({
             icon: 'error',
             title: 'Error',
-            text: 'Vuelve a intentarlo'
+            text: 'No se encuentra la impresora conectada'
           });
           console.log(err);
         });
+    })
+  }
+  generateVenta() {
+    const date = new Date();
+    let fecha1 = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+    let menuArray: Object[] = new Array();
+    this.dataArray.forEach(element => {
+      let menu = {
+        "cantidad": element.cantidad,
+        "menuId": element.id_product
+      };
+      menuArray.push(menu);
+    });
+    let propinaLoc = +(String(this.propina).replace("$", "").replace(".", ""));
+    let totalVenta = this.total - propinaLoc;
+    this.venta.createVenta(this.sucursal.empresa.id, totalVenta, fecha1, this.seleccionado, propinaLoc, this.sucursal.sucursal.id,
+      this.consumidor.id, this.mesas[0].id, menuArray).subscribe(res => {
+        this.order.UpdateConsumidor(new ConsumidorModel());
+        this.dataArray = new Array();
+        this.order.updateOrder(this.dataArray, this.mesas[0].id)
+        this.llenaValores();
+        this.recibeInput = '';
+        this.cambioCalcule = 0;
+        Swal.close();
+        Swal.fire('Ticket impreso',
+          'El ticket se ha dispensado con exito',
+          'success');
       }, (err) => {
         Swal.close();
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'No se encuentra la impresora conectada'
+          text: 'Vuelve a intentarlo'
         });
         console.log(err);
       });
-    })
+  }
+  generarDomicilio() {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Espere por favor'
+    });
+    Swal.showLoading();
+    this.pos.posDomicilio(this.consumidor.nombre, this.consumidor.direccion, this.consumidor.telefono, this.comentarioDomicilio).subscribe(res => {
+      if (this.sucursal.empresa == null) {
+        this.sucursal.getSucursalInfo().subscribe(res => {
+          Swal.close();
+          this.enviaPos();
+          this.closeDomicilioModal()
+        });
+      } else {
+        Swal.close();
+        this.enviaPos();
+        this.closeDomicilioModal()
+      }
+    }, (err) => {
+      Swal.close();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Vuelve a intentarlo'
+      });
+      console.log(err);
+    });
   }
 }
 export class ProductsPosModel {
