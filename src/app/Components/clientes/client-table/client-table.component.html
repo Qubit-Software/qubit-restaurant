@@ -25,7 +25,7 @@
           </tr>
           <tr class="poppinsLight"
             *ngFor="let i of consumidores | filter:searchText:'nombre' | paginate: {itemsPerPage: 13, currentPage:page}  ; let index = index">
-            <td><input type="number" [className]="(index!=edit) ? 'inputTable' : 'inputEdit'" [(ngModel)]="i.cedula"
+            <td><input type="text" [className]="(index!=edit) ? 'inputTable' : 'inputEdit'" [(ngModel)]="i.cedula"
                 [attr.disabled]="(index!=edit) ? '' : null" /></td>
             <td><input type="text" [className]="(index!=edit) ? 'inputTable' : 'inputEdit'" [(ngModel)]="i.nombre"
                 [attr.disabled]="(index!=edit) ? '' : null" /></td>
